@@ -68,23 +68,23 @@ const Navigation = () => {
                   Doctors
                 </Nav.Link>
               )}
-              <Nav.Link as={Link} to="/emedic">
+              <a style={{textDecoration:"none",color:"gray",marginTop:"8px",marginLeft:"5px"}} href="https://www.emedicshops.com/" target="_blank" rel="">
                 E-Medic
-              </Nav.Link>
+              </a>
             </Nav>
             <Nav>
               <Nav.Link>
                 {Boolean(b) ? (
                   <>
                     <NavDropdown title="Admin Dashbord" id="basic-nav-dropdown">
-                      <NavDropdown.Item as={Link} to="/addnewdoctor">
-                        Add New Doctor
-                      </NavDropdown.Item>
                       <NavDropdown.Item as={Link} to="/mngdoctors">
                         Manage Doctors
                       </NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/pdetails">
+                        All Patient Details
+                      </NavDropdown.Item>
                       <Button
-                      className="w-100"
+                        className="w-100"
                         onClick={() => {
                           logout();
                           window.location.reload();
@@ -104,9 +104,12 @@ const Navigation = () => {
                       <NavDropdown.Item as={Link} to="/myappoinment">
                         My Appoinment
                       </NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/myprescription">
+                        All Prescription
+                      </NavDropdown.Item>
 
                       <Button
-                       className="w-100"
+                        className="w-100"
                         onClick={() => {
                           logout();
                           window.location.reload();
@@ -128,7 +131,7 @@ const Navigation = () => {
                       </NavDropdown.Item>
 
                       <Button
-                       className="w-100"
+                        className="w-100"
                         onClick={() => {
                           logout();
                           window.location.reload();

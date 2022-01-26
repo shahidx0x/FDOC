@@ -9,6 +9,7 @@
   height: 100vh;
   overflow-y: scroll;
   width: 100rem;
+  overflow-x:hidden;
 }
 .t-n{
   text-decoration: none;

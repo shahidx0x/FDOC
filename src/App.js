@@ -7,7 +7,6 @@ import Registration from "./pages/Registration/Registration";
 import Home from "./pages/Home/Home";
 import { useState } from "react";
 import { useEffect } from "react";
-import RingLoader from "react-spinners/RingLoader";
 import DoctorsList from "./pages/DoctorsList/DoctorsList";
 import Login from "./pages/Registration/Login";
 import Test from "./pages/Test";
@@ -19,6 +18,9 @@ import Docx from "./usersx/Doctor/Docx";
 import AddNewDoctor from "./usersx/Admin/AddNewDoctor/AddNewDoctor";
 import AdminRoute from "./routes/AdminRoute/AdminRoute";
 import ManageDoctor from "./usersx/Admin/ManageDoctor/ManageDoctor";
+import PatientDetails from "./usersx/Admin/PatientDetails/PatientDetails";
+import MultiUpload from "./pages/MultiUpload/MultiUpload";
+import Loading from "./component/Loading/Loading";
 
 function App() {
   const [load, setLoad] = useState(false);
@@ -26,12 +28,13 @@ function App() {
     setLoad(true);
     setTimeout(() => {
       setLoad(false);
-    }, 1500);
+    }, 2000);
   }, []);
   return (
     <div className={load ? "App" : ""}>
       {load ? (
-        <RingLoader color={"#9013FE"} loading={load} size={150} />
+        // <RingLoader color={"#9013FE"} loading={load} size={150} />
+        <Loading/>
       ) : (
         <AuthProvider>
           <Router>
@@ -55,20 +58,26 @@ function App() {
               <Route path="/registration">
                 <Registration></Registration>
               </Route>
+              <Route path="/addnewdoctor">
+                <AddNewDoctor />
+              </Route>
               <PrivateRoute path="/appoinment/:pakId">
                 <Appoinment />
               </PrivateRoute>
               <PrivateRoute path="/myappoinment">
                 <MyAppoinment />
               </PrivateRoute>
+               <PrivateRoute path="/myprescription">
+                <MultiUpload/>
+              </PrivateRoute>
               <DoctorRoute path="/docdash">
                 <Docx />
               </DoctorRoute>
-              <AdminRoute path="/addnewdoctor">
-                <AddNewDoctor />
-              </AdminRoute>
               <AdminRoute path="/mngdoctors">
-                <ManageDoctor/>
+                <ManageDoctor />
+              </AdminRoute>
+              <AdminRoute path="/pdetails">
+                <PatientDetails/>
               </AdminRoute>
             </Switch>
           </Router>

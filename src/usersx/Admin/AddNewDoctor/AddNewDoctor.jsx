@@ -9,15 +9,18 @@ import axios from "axios";
 import storage from "../../../firebase/firebase.storage.config";
 import "./style.css";
 import useAuth from "../../../hooks/useAuth";
+import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const AddNewDoctor = () => {
   const notify = () => toast.success("Submitted Successfully ");
   const { registerUser, SetUser, auth, updateProfile } = useAuth();
   const { register, handleSubmit } = useForm();
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState([]);
   const [progress, setProgress] = useState(0);
   const [presUrl, setPresUrl] = useState("");
   const history = useHistory();
+  const location = useLocation();
   const saveUser = (email, displayName, role) => {
     const user = { email, displayName, role };
     axios.post("https://project-101-doctor.herokuapp.com/users/", user);
@@ -27,6 +30,7 @@ const AddNewDoctor = () => {
       setImage(e.target.files[0]);
     }
   };
+  console.log(image);
   const handleUpload = () => {
     const storageRef = ref(storage, `/files/${image.name}`);
     const uploadTask = uploadBytesResumable(storageRef, image);
@@ -60,15 +64,13 @@ const AddNewDoctor = () => {
           displayName: data.name,
         }).then(() => {
           saveUser(data.Mail, data.name, "doctor");
+          history.push(location.state?.from || "/login");
         });
       })
       .catch((error) => {});
-      data.pass = "";
+    data.pass = "";
     sendDataToServer(data);
     notify();
-    setTimeout(() => {
-      history.push("/doctors");
-    }, 1000);
   };
   return (
     <Container style={{ marginTop: "70px" }}>
@@ -80,8 +82,11 @@ const AddNewDoctor = () => {
         <Col>
           <div className="add-service">
             <h2 className="text-center">
-              <span>Add New Doctor</span>
+              <span>Doctor Registration</span>
             </h2>
+            <p className="">
+              <Link to="/login">Already Registerd ? Login here</Link>
+            </p>
             <form
               className="from-container-xxo slide-in-elliptic-top-fwd"
               onSubmit={handleSubmit(onSubmit)}
@@ -93,9 +98,10 @@ const AddNewDoctor = () => {
               />
               <input
                 type="password"
-                placeholder="Set Password"
+                placeholder="Enter Password"
                 {...register("pass", {})}
               />
+
               <input
                 type="email"
                 placeholder="Mail"
@@ -119,6 +125,13 @@ const AddNewDoctor = () => {
               <select {...register("department")}>
                 <option value="Chest">Chest</option>
                 <option value="Medicine">Medicine</option>
+                <option value="Eye">Dermatology</option>
+                <option value="Eye">Psychaiatry</option>
+                <option value="Eye">General Physician</option>
+                <option value="Eye">Diabetes</option>
+                <option value="Eye">Neuromedicine</option>
+                <option value="Eye">Gynaecology</option>
+                <option value="Eye">Nutritionest</option>
                 <option value="Eye">Eye</option>
               </select>
               <input type="text" placeholder="Time" {...register("time", {})} />
@@ -155,7 +168,7 @@ const AddNewDoctor = () => {
                 variant="primary"
                 type="Submit"
               >
-                Add Information
+                Register
               </Button>
             </form>
           </div>

@@ -8,6 +8,7 @@ const Home = () => {
            
             <ComCarousel/>
             <Dservices/>
+    
         </div>
     );
 };

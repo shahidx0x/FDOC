@@ -1,0 +1,8 @@
+Doctor Section>>>
+hold 1. Search Appointed Patient by their Name(Search Bar Not Working) hold
+2.Approve Appointed Patient
+3.See Patient Previous Prescriptions
+4.Create New Prescription
+
+Patient>>>>
+1.All Prescription Upload Section

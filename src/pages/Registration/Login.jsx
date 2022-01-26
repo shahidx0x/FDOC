@@ -5,26 +5,27 @@ import "./style.css";
 import "./animation.css";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import initializeAuthentication from "../../firebase/firebase.init";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory} from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 
 initializeAuthentication();
 const Login = () => {
   const { register, handleSubmit } = useForm();
+    const { logout } = useAuth();
   const { login } = useAuth();
-  const location = useLocation();
   const history = useHistory();
   const saveUser = (email, displayName) => {
     const user = { email, displayName };
     axios.put("https://project-101-doctor.herokuapp.com/users", user);
   };
   const onSubmit = (data) => {
+    logout();
     login(data.mail, data.pass).then((res) => {
       localStorage.setItem("isAuth", "true");
-      history.push(location.state?.from || "/home");
+      history.push("/home");
     });
-    history.push(location.state?.from || "/home");
+    history.push("/home");
   };
 
   const handleGoogle = () => {
@@ -35,7 +36,7 @@ const Login = () => {
         const user = result.user;
         saveUser(user.email, user.displayName);
         localStorage.setItem("isAuth", "true");
-        history.push(location.state?.from || "/home");
+        history.push("/home");
       })
       .catch((error) => {});
       
@@ -83,14 +84,14 @@ const Login = () => {
               <Button
                 className="roll-in-left btnx"
                 type="Submit"
-                variant="outline-primary"
+                variant="primary"
               >
                 Login
               </Button>
               <Button
                 className="roll-in-left btnx"
                 onClick={handleGoogle}
-                variant="outline-success"
+                variant="success"
               >
                 Login with Google
               </Button>

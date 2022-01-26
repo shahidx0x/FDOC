@@ -50,10 +50,17 @@ client.connect((err) => {
       const haiku3 = database.collection("doctordata");
       const haiku4 = database.collection("prinfo");
       const haiku5 = database.collection("users");
+const haiku6 = database.collection("pres-img");
 
       //GET API FOR USERS
       app.get("/users", async (req, res) => {
         const cursor = haiku5.find({});
+        const users = await cursor.toArray();
+        res.send(users);
+      });
+      //GET API PRESS-IMG
+      app.get("/pres-img", async (req, res) => {
+        const cursor = haiku6.find({});
         const users = await cursor.toArray();
         res.send(users);
       });
@@ -111,6 +118,15 @@ client.connect((err) => {
         res.json(result);
         console.log("[*] User uploaded to database");
       });
+
+      //POST API FOR USERS
+      app.post("/pres-img", async (req, res) => {
+        const users = req.body;
+        const result = await haiku6.insertOne(users);
+        res.json(result);
+        console.log("[*] User uploaded to database");
+      });
+
       //POST API FOR USERS
       app.post("/users-info", async (req, res) => {
         const users = req.body;
@@ -145,6 +161,13 @@ client.connect((err) => {
         const update = { $set: user };
         const result = await haiku4.updateOne(filter, update, option);
       });
+      app.put("/users-info/:id", async (req, res) => {
+        const user = req.body;
+        const filter = { email: user.email };
+        const option = { upsert: true };
+        const update = { $set: status };
+        const result = await haiku4.updateOne(filter, update, option);
+      });
 
       // PUT API FOR ADMIN
       app.put("/users/admin", async (req, res) => {
@@ -170,14 +193,7 @@ client.connect((err) => {
         console.log("deleteing user with id", result);
         res.json(result);
       });
-      //DELETE API FOR ADMIN REVIEWS
-      app.delete("/reviews/:id", async (req, res) => {
-        const id = req.params.id;
-        const query = { _id: ObjectId(id) };
-        const result = await haiku2.deleteOne(query);
-        console.log("deleteing user review with id", result);
-        res.json(result);
-      });
+
     } finally {
       // await client.close();
     }

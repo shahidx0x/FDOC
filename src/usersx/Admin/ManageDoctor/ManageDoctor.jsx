@@ -13,13 +13,27 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import MDCard from "./MDCard";
 import useDoctorlist from "../../../hooks/useDoctorlist";
+import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-
-const  ManageDoctor = () => {
+const ManageDoctor = () => {
   const [doctorlists] = useDoctorlist();
   const [morder, setMorder] = useState([]);
   const [filteredData, setFIlteredData] = useState([]);
-
+  const { register, handleSubmit } = useForm();
+  const notify = () => toast.warn("No Result Found ");
+  const onSubmit = (data) => {
+    srch(data.svalue);
+  };
+  const srch = (data) => {
+    setFIlteredData(
+      morder.filter((mor) => mor.name.toLowerCase().includes(data))
+    );
+    if (filteredData.length === 0) {
+      notify();
+    }
+  };
 
   useEffect(() => {
     fetch("https://project-101-doctor.herokuapp.com/doctorlist")
@@ -36,20 +50,25 @@ const  ManageDoctor = () => {
   };
   return (
     <Container className="c-body">
+        <ToastContainer />
       <h2 className="text-center" style={{ fontSize: "50px" }}>
         Manage Doctors
       </h2>
 
       <Container className="">
+      
         <InputGroup className="mb-3 slide-in-top">
-          <FormControl
-            placeholder="Search Doctor"
-            aria-label="Recipient's username"
-            aria-describedby="basic-addon2"
-          />
-          <Button type="Submit" variant="outline-secondary" id="button-addon2">
-            Search Doctor
-          </Button>
+          <form className="w-100 d-flex" onSubmit={handleSubmit(onSubmit)}>
+            <FormControl
+              placeholder="Search Doctor"
+              aria-label="Recipient's username"
+              aria-describedby="basic-addon2"
+              {...register("svalue", {})}
+            />
+            <Button type="Submit" variant="secondary" id="button-addon2">
+              Search
+            </Button>
+          </form>
         </InputGroup>
         <Row className="">
           <Col
@@ -186,13 +205,13 @@ const  ManageDoctor = () => {
           </Col>
           <Col lg={10} className="o-c">
             {filteredData.length === 0 ? (
-              <div className="gc-x  mt-5 ob slide-in-top">
+              <div className=" gc-x ob mt-5  slide-in-top">
                 {doctorlists.map((doctor) => (
                   <MDCard key={doctor._id} doctor={doctor}></MDCard>
                 ))}
               </div>
             ) : (
-              <div className="gc-x  mt-5 ob slide-in-top">
+              <div className=" gc-x ob mt-5  slide-in-top">
                 {filteredData.map((doctor) => (
                   <MDCard key={doctor._id} doctor={doctor} hc={hc}></MDCard>
                 ))}

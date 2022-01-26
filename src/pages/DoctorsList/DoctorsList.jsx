@@ -13,13 +13,19 @@ import ListCard from "./ListCard";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import "./style.css";
-
+import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const DoctorsList = () => {
   const [doctorlists] = useDoctorlist();
   const [morder, setMorder] = useState([]);
   const [filteredData, setFIlteredData] = useState([]);
-
+  const { register, handleSubmit } = useForm();
+  const notify = () => toast.warn("No Result Found ");
+  const onSubmit = (data) => {
+    srch(data.svalue);
+  };
 
   useEffect(() => {
     fetch("https://project-101-doctor.herokuapp.com/doctorlist")
@@ -34,8 +40,17 @@ const DoctorsList = () => {
   const hcc = (xx) => {
     setFIlteredData(morder.filter((mor) => mor.department === xx));
   };
+  const srch = (data) => {
+    setFIlteredData(
+      morder.filter((mor) => mor.name.toLowerCase().includes(data))
+    );
+    if (filteredData.length === 0) {
+      notify();
+    }
+  };
   return (
     <Container className="c-body">
+      <ToastContainer/>
       <p className="text-center" style={{ color: "orange", fontSize: "30px" }}>
         See Our Specialist Doctors
       </p>
@@ -45,14 +60,17 @@ const DoctorsList = () => {
 
       <Container className="">
         <InputGroup className="mb-3 slide-in-top">
-          <FormControl
-            placeholder="Search Doctor"
-            aria-label="Recipient's username"
-            aria-describedby="basic-addon2"
-          />
-          <Button type="Submit" variant="outline-secondary" id="button-addon2">
-            Search Doctor
-          </Button>
+          <form className="w-100 d-flex" onSubmit={handleSubmit(onSubmit)}>
+            <FormControl
+              placeholder="Search Doctor"
+              aria-label="Recipient's username"
+              aria-describedby="basic-addon2"
+              {...register("svalue", {})}
+            />
+            <Button type="Submit" variant="secondary" id="button-addon2">
+              Search
+            </Button>
+          </form>
         </InputGroup>
         <Row className="">
           <Col

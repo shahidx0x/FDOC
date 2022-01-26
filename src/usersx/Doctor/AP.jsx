@@ -1,12 +1,11 @@
-import React from "react";
-import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import React from 'react';
+import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Zoom from "react-medium-image-zoom";
-import "react-medium-image-zoom/dist/styles.css";
+import ReactImageZoom from 'react-image-zoom';
 
-const DocCard = (props) => {
-  const notify = () => toast.success("Appoinment Cancled ");
+const AP = (props) => {
+    console.log(props);
+        const notify = () => toast.success("Appoinment Cancled ");
   const {
     _id,
     Doctor,
@@ -18,8 +17,8 @@ const DocCard = (props) => {
     apstatus,
     url,
   } = props.data;
-
-  const handleDelete = (id) => {
+  const propx = {width: 400, height: 400, zoomWidth: 500, scale:1.5, img: url};
+   const handleDelete = (id) => {
     const isDelete = window.confirm(
       "Are you sure , you want to cancle appointment ?"
     );
@@ -28,9 +27,6 @@ const DocCard = (props) => {
         method: "DELETE",
       });
       notify();
-      setTimeout(() => {
-        window.location.reload(false);
-      }, 500);
     }
   };
   return (
@@ -41,14 +37,8 @@ const DocCard = (props) => {
           <Container>
             <Row>
               <Col lg={4}>
-                <Zoom>
-                  <img
-                    alt="that wanaka tree"
-                    src={url}
-                    width="390px"
-                    height="400px"
-                  />
-                </Zoom>
+                {/* <img src={url} alt="" /> */}
+                <ReactImageZoom {...propx} />
               </Col>
               <Col lg={6}>
                 <h3>Appointed Doctor : {Doctor}</h3>
@@ -76,6 +66,6 @@ const DocCard = (props) => {
       </Card>
     </Container>
   );
-};
+}
 
-export default DocCard;
+export default AP;
