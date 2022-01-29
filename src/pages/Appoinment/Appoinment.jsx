@@ -150,6 +150,7 @@ const Appoinment = () => {
                 <div className="d-flex">
                   <input
                     type="file"
+                    accept="images/*"
                     onChangeCapture={handleChange}
                     placeholder="Prescription"
                   />

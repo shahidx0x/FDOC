@@ -5,6 +5,7 @@ import DocCard from "./DocCard";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
+import AL from "../../component/ApiLoading/AL";
 
 const Docx = () => {
   const { user } = useAuth();
@@ -27,7 +28,9 @@ const Docx = () => {
     xrs();
   };
   const xrs = () => {
-    setFIlteredData(filteredData.filter((mor) => mor.Name.toLowerCase().includes("karma")));
+    setFIlteredData(
+      filteredData.filter((mor) => mor.Name.toLowerCase().includes("karma"))
+    );
   };
   return (
     <Container className="mt-5">
@@ -35,24 +38,16 @@ const Docx = () => {
       <h2 className="text-center" style={{ fontSize: "50px" }}>
         Patient List
       </h2>
-      {/* <InputGroup className="mb-3 slide-in-top">
-        <form className="w-100 d-flex" onSubmit={handleSubmit(onSubmit)}>
-          <FormControl
-            placeholder="Search Doctor"
-            aria-label="Recipient's username"
-            aria-describedby="basic-addon2"
-            {...register("svalue", {})}
-          />
-          <Button type="Submit" variant="secondary" id="button-addon2">
-            Search
-          </Button>
-        </form>
-      </InputGroup> */}
-
       <Container className="obx">
-        {filteredData.map((fdata) => (
-          <DocCard key={fdata._id} data={fdata}></DocCard>
-        ))}
+        {filteredData.length === 0 ? (
+          <AL></AL>
+        ) : (
+          <Container>
+            {filteredData.map((fdata) => (
+              <DocCard key={fdata._id} data={fdata}></DocCard>
+            ))}
+          </Container>
+        )}
       </Container>
     </Container>
   );

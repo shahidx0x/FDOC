@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Carousel } from "react-bootstrap";
-import './style.css';
+import "./style.css";
 
 const ComCarousel = () => {
   const [index, setIndex] = useState(0);
@@ -17,8 +17,12 @@ const ComCarousel = () => {
             alt="First slide"
           />
           <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            <h3>Your Most Trusted Health Partner</h3>
+            <p>
+              A repudiandae ipsam labore ipsa voluptatum quidem quae laudantium
+              quisquam aperiam maiores sunt fugit, deserunt rem suscipit
+              placeat.
+            </p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item className="bg1">
@@ -29,8 +33,12 @@ const ComCarousel = () => {
           />
 
           <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h3>TOTAL HEALTH CARE SOLUTION</h3>
+            <p>
+              A repudiandae ipsam labore ipsa voluptatum quidem quae laudantium
+              quisquam aperiam maiores sunt fugit, deserunt rem suscipit
+              placeat.
+            </p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item className="bg2">
@@ -41,9 +49,9 @@ const ComCarousel = () => {
           />
 
           <Carousel.Caption>
-            <h3>Third slide label</h3>
+            <h3>Online Appoinment</h3>
             <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+              Get ALl time support for emergency.We have introduced the principle of family medicine.
             </p>
           </Carousel.Caption>
         </Carousel.Item>

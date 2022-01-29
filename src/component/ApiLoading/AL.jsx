@@ -1,7 +1,7 @@
 import React from "react";
-import "./Loading.css";
+import "./AL.css";
 
-const Loading = () => {
+const AL = () => {
   return (
     <div class="absCenter ">
       <div class="loaderPill">
@@ -15,10 +15,10 @@ const Loading = () => {
         <div class="loaderPill-floor">
           <div class="loaderPill-floor-shadow"></div>
         </div>
-        <div class="loaderPill-text">Loading your E-MEDIC</div>
+        <div class="loaderPill-text">Loading...Please Wait</div>
       </div>
     </div>
   );
 };
 
-export default Loading;
+export default AL;

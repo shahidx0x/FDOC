@@ -50,7 +50,8 @@ client.connect((err) => {
       const haiku3 = database.collection("doctordata");
       const haiku4 = database.collection("prinfo");
       const haiku5 = database.collection("users");
-const haiku6 = database.collection("pres-img");
+      const haiku6 = database.collection("pres-img");
+      const haiku7 = database.collection("pres-info");
 
       //GET API FOR USERS
       app.get("/users", async (req, res) => {
@@ -58,12 +59,28 @@ const haiku6 = database.collection("pres-img");
         const users = await cursor.toArray();
         res.send(users);
       });
+      app.get("/pres-info", async (req, res) => {
+        const cursor = haiku7.find({});
+        const users = await cursor.toArray();
+        res.send(users);
+      });
+
       //GET API PRESS-IMG
       app.get("/pres-img", async (req, res) => {
         const cursor = haiku6.find({});
         const users = await cursor.toArray();
         res.send(users);
       });
+
+      //POST API FOR USERS
+      app.post("/pres-img", async (req, res) => {
+	console.log(req.body);
+        const users = req.body;
+        const result = await haiku6.insertOne(users);
+        res.json(result);
+        console.log("[*] User uploaded to database");
+      });
+
       //GET API FOR PRINFO
       app.get("/users-info", async (req, res) => {
         const cursor = haiku4.find({});
@@ -95,6 +112,15 @@ const haiku6 = database.collection("pres-img");
         res.json(service);
       });
 
+     //GET SINGLE MULTI-PRES-IMG INFO
+      app.get("/pres-img/:email", async (req, res) => {
+        const mail = req.params.email;
+	const query = { owner: mail };
+        console.log("[*] Getting single service mail", mail);
+        const service = await haiku6.findOne(query);
+        res.json(service);
+      });
+
       //GET API FOR ADMIN ,DOCTOR CHECK
 
       app.get("/users/:email", async (req, res) => {
@@ -119,18 +145,18 @@ const haiku6 = database.collection("pres-img");
         console.log("[*] User uploaded to database");
       });
 
-      //POST API FOR USERS
-      app.post("/pres-img", async (req, res) => {
-        const users = req.body;
-        const result = await haiku6.insertOne(users);
-        res.json(result);
-        console.log("[*] User uploaded to database");
-      });
 
       //POST API FOR USERS
       app.post("/users-info", async (req, res) => {
         const users = req.body;
         const result = await haiku4.insertOne(users);
+        res.json(result);
+        console.log("[*] User uploaded to database");
+      });
+      //POST API FOR USERS
+      app.post("/pres-info", async (req, res) => {
+        const users = req.body;
+        const result = await haiku7.insertOne(users);
         res.json(result);
         console.log("[*] User uploaded to database");
       });
@@ -190,6 +216,14 @@ const haiku6 = database.collection("pres-img");
         const id = req.params.id;
         const query = { _id: ObjectId(id) };
         const result = await haiku3.deleteOne(query);
+        console.log("deleteing user with id", result);
+        res.json(result);
+      });
+      //DELETE API FOR PRES-IMG
+      app.delete("/pres-img/:id", async (req, res) => {
+        const id = req.params.id;
+        const query = { _id: ObjectId(id) };
+        const result = await haiku6.deleteOne(query);
         console.log("deleteing user with id", result);
         res.json(result);
       });

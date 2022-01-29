@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
+import { Link } from "react-router-dom";
 
 const DocCard = (props) => {
   const notify = () => toast.success("Appoinment Cancled ");
@@ -36,7 +37,7 @@ const DocCard = (props) => {
   return (
     <Container style={{ marginBottom: "20px", marginTop: "20px" }}>
       <ToastContainer />
-      <Card>
+      <Card style={{ border: "1px solid blue" }}>
         <Card.Body>
           <Container>
             <Row>
@@ -55,19 +56,29 @@ const DocCard = (props) => {
                 <p>Appoinment Status : {apstatus} </p>
 
                 <div className="mt-5">
-                  <h5>Patient Name : {Name}</h5>
+                  <h5>
+                    Patient Name :{" "}
+                    <Link to={`viewpdata/${Email}/${Name}`}>
+                      <Button variant="outline-info">{Name}</Button>
+                    </Link>
+                  </h5>
                   <p className="fw-bold">Patient Contact : {Email}</p>
                   <p className="fw-bold">Appointed Date : {apdate}</p>
                   <p className="fw-bold">Appointed Time : {aptime}</p>
                 </div>
                 <p className="text-center fw-bold">Problem Details</p>
                 <Card.Text>{detail}</Card.Text>
-                <Button
-                  onClick={() => handleDelete(_id)}
-                  variant="outline-danger"
-                >
+                <Button onClick={() => handleDelete(_id)} variant="danger">
                   Cancle Appoinment
                 </Button>
+                <Button className="ms-2" variant="success">
+                  Approve Appoinment
+                </Button>
+                <Link to={`/create-prescription/${Doctor}/${Email}/${Name}/${_id}`}>
+                  <Button className="ms-2" variant="primary">
+                    Create Prescription
+                  </Button>
+                </Link>
               </Col>
               <Col lg={2}></Col>
             </Row>

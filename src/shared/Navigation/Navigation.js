@@ -52,8 +52,9 @@ const Navigation = () => {
         variant="dark"
       >
         <Container>
-          <Navbar.Brand href="#home">
-            <h1>FDOC</h1>
+          <Navbar.Brand href="/home">
+            <img src="./logo_brand.png" alt="" width="200px"/>
+        
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -68,7 +69,7 @@ const Navigation = () => {
                   Doctors
                 </Nav.Link>
               )}
-              <a style={{textDecoration:"none",color:"gray",marginTop:"8px",marginLeft:"5px"}} href="https://www.emedicshops.com/" target="_blank" rel="">
+              <a style={{textDecoration:"none",color:"gray",marginTop:"8px",marginLeft:"5px"}} href="https://www.emedicshops.com/" target="_blank"   rel="norem">
                 E-Medic
               </a>
             </Nav>
@@ -103,6 +104,9 @@ const Navigation = () => {
                     >
                       <NavDropdown.Item as={Link} to="/myappoinment">
                         My Appoinment
+                      </NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/empres">
+                        Emedic Prescription
                       </NavDropdown.Item>
                       <NavDropdown.Item as={Link} to="/myprescription">
                         All Prescription

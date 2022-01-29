@@ -21,6 +21,9 @@ import ManageDoctor from "./usersx/Admin/ManageDoctor/ManageDoctor";
 import PatientDetails from "./usersx/Admin/PatientDetails/PatientDetails";
 import MultiUpload from "./pages/MultiUpload/MultiUpload";
 import Loading from "./component/Loading/Loading";
+import ViewPresData from "./usersx/Doctor/ViewPresData";
+import CreatePrescription from "./usersx/Doctor/CreatePrescription";
+import EMPmain from "./pages/EmedicPrescription/EMPmain";
 
 function App() {
   const [load, setLoad] = useState(false);
@@ -34,11 +37,12 @@ function App() {
     <div className={load ? "App" : ""}>
       {load ? (
         // <RingLoader color={"#9013FE"} loading={load} size={150} />
-        <Loading/>
+        <Loading />
       ) : (
         <AuthProvider>
           <Router>
             <Navigation />
+
             <Switch>
               <Route exact path="/">
                 <Home />
@@ -64,20 +68,29 @@ function App() {
               <PrivateRoute path="/appoinment/:pakId">
                 <Appoinment />
               </PrivateRoute>
+               <PrivateRoute path="/empres">
+                <EMPmain />
+              </PrivateRoute>
               <PrivateRoute path="/myappoinment">
                 <MyAppoinment />
               </PrivateRoute>
-               <PrivateRoute path="/myprescription">
-                <MultiUpload/>
+              <PrivateRoute path="/myprescription">
+                <MultiUpload />
               </PrivateRoute>
               <DoctorRoute path="/docdash">
                 <Docx />
+              </DoctorRoute>
+              <DoctorRoute path="/create-prescription/:doctor/:mail/:name/:id">
+                <CreatePrescription />
+              </DoctorRoute>
+              <DoctorRoute path="/viewpdata/:mail/:name">
+                <ViewPresData />
               </DoctorRoute>
               <AdminRoute path="/mngdoctors">
                 <ManageDoctor />
               </AdminRoute>
               <AdminRoute path="/pdetails">
-                <PatientDetails/>
+                <PatientDetails />
               </AdminRoute>
             </Switch>
           </Router>
