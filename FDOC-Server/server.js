@@ -31,206 +31,127 @@ const client = new MongoClient(uri, {
   useUnifiedTopology: true,
 });
 
-// CONNECTION DEBUGING
+async function run() {
+  try {
+    await client.connect();
+    const database = client.db("project-101-doctor");
+    const haiku2 = database.collection("users");
+    const haiku3 = database.collection("doctordata");
+    const haiku4 = database.collection("prinfo");
+    const haiku5 = database.collection("users");
+    const haiku6 = database.collection("pres-img");
+    const haiku7 = database.collection("pres-info");
 
-client.connect((err) => {
-  if (err === undefined) {
-    console.log("[*] Database Connected Successfully.");
-  } else {
-    console.error("[*] Database Connection Failed.");
+    app.get("/users", async (req, res) => {
+      res.send(await haiku5.find({}).toArray());
+    });
+
+    app.get("/users/:email", async (req, res) => {
+      const user = await haiku2.findOne({ email: req.params.email });
+      let isAdmin = false;
+      let isDoctor = false;
+      if (user?.role === "admin") {
+        isAdmin = true;
+      } else if (user?.role === "doctor") {
+        isDoctor = true;
+      }
+      res.json({ admin: isAdmin, doctor: isDoctor });
+    });
+
+    app.post("/users", async (req, res) => {
+      res.json(await haiku2.insertOne(req.body));
+    });
+
+    app.put("/users", async (req, res) => {
+      const result = await haiku2.updateOne(
+        { email: req.body.email },
+        { $set: req.body },
+        { upsert: true }
+      );
+    });
+
+    app.put("/users/admin", async (req, res) => {
+      req.json(
+        await haiku5.updateOne(
+          { email: req.body.email },
+          { $set: { role: "admin" } }
+        )
+      );
+    });
+
+    app.get("/pres-info", async (req, res) => {
+      res.send(await haiku7.find({}).toArray());
+    });
+
+    app.post("/pres-info", async (req, res) => {
+      res.json(await haiku7.insertOne(req.body));
+    });
+
+    app.get("/pres-img", async (req, res) => {
+      res.send(await haiku6.find({}).toArray());
+    });
+
+    app.get("/pres-img/:email", async (req, res) => {
+      res.json(await haiku6.findOne({ owner: req.params.email }));
+    });
+
+    app.post("/pres-img", async (req, res) => {
+      res.json(await haiku6.insertOne(req.body));
+    });
+
+    app.delete("/pres-img/:id", async (req, res) => {
+      res.json(await haiku6.deleteOne({ _id: ObjectId(req.params.id) }));
+    });
+
+    app.get("/users-info", async (req, res) => {
+      res.send(await haiku4.find({}).toArray());
+    });
+
+    app.get("/users-info/:id", async (req, res) => {
+      res.json(await haiku4.findOne({ _id: ObjectId(req.params.id) }));
+    });
+
+    app.post("/users-info", async (req, res) => {
+      res.json(await haiku4.insertOne(req.body));
+    });
+
+    app.put("/users-info", async (req, res) => {
+      const result = await haiku4.updateOne(
+        { email: req.body.email },
+        { $set: req.body },
+        { upsert: true }
+      );
+    });
+
+    app.put("/users-info/:id", async (req, res) => {
+      const result = await haiku4.updateOne(
+        { _id: ObjectId(req.params.id) },
+        { $set: req.body },
+        { upsert: true }
+      );
+    });
+
+    app.delete("/users-info/:id", async (req, res) => {
+      res.json(await haiku4.deleteOne({ _id: ObjectId(req.params.id) }));
+    });
+
+    app.get("/doctorlist", async (req, res) => {
+      res.send(await haiku3.find({}).toArray());
+    });
+
+    app.get("/doctorlist/:id", async (req, res) => {
+      res.json(await haiku3.findOne({ _id: ObjectId(req.params.id) }));
+    });
+
+    app.post("/doctorlist", async (req, res) => {
+      res.json(await haiku3.insertOne(req.body));
+    });
+
+    app.delete("/doctorlist/:id", async (req, res) => {
+      res.json(await haiku3.deleteOne({ _id: ObjectId(req.params.id) }));
+    });
+  } finally {
+    // await client.close();
   }
-
-  // SETING UP API
-
-  async function run() {
-    try {
-      await client.connect();
-      const database = client.db("project-101-doctor");
-      const haiku2 = database.collection("users");
-      const haiku3 = database.collection("doctordata");
-      const haiku4 = database.collection("prinfo");
-      const haiku5 = database.collection("users");
-      const haiku6 = database.collection("pres-img");
-      const haiku7 = database.collection("pres-info");
-
-      //GET API FOR USERS
-      app.get("/users", async (req, res) => {
-        const cursor = haiku5.find({});
-        const users = await cursor.toArray();
-        res.send(users);
-      });
-      app.get("/pres-info", async (req, res) => {
-        const cursor = haiku7.find({});
-        const users = await cursor.toArray();
-        res.send(users);
-      });
-
-      //GET API PRESS-IMG
-      app.get("/pres-img", async (req, res) => {
-        const cursor = haiku6.find({});
-        const users = await cursor.toArray();
-        res.send(users);
-      });
-
-      //POST API FOR USERS
-      app.post("/pres-img", async (req, res) => {
-	console.log(req.body);
-        const users = req.body;
-        const result = await haiku6.insertOne(users);
-        res.json(result);
-        console.log("[*] User uploaded to database");
-      });
-
-      //GET API FOR PRINFO
-      app.get("/users-info", async (req, res) => {
-        const cursor = haiku4.find({});
-        const users = await cursor.toArray();
-        res.send(users);
-      });
-      //GET API FOR DOCTOR-INFO
-      app.get("/doctorlist", async (req, res) => {
-        const cursor = haiku3.find({});
-        const users = await cursor.toArray();
-        res.send(users);
-      });
-
-      //GET SINGLE DOCTOR
-      app.get("/doctorlist/:id", async (req, res) => {
-        const id = req.params.id;
-        console.log("[*] Getting single service id", id);
-        const query = { _id: ObjectId(id) };
-        const service = await haiku3.findOne(query);
-        res.json(service);
-      });
-
-     //GET SINGLE USER-INFO
-      app.get("/users-info/:id", async (req, res) => {
-        const id = req.params.id;
-        console.log("[*] Getting single service id", id);
-        const query = { _id: ObjectId(id) };
-        const service = await haiku4.findOne(query);
-        res.json(service);
-      });
-
-     //GET SINGLE MULTI-PRES-IMG INFO
-      app.get("/pres-img/:email", async (req, res) => {
-        const mail = req.params.email;
-	const query = { owner: mail };
-        console.log("[*] Getting single service mail", mail);
-        const service = await haiku6.findOne(query);
-        res.json(service);
-      });
-
-      //GET API FOR ADMIN ,DOCTOR CHECK
-
-      app.get("/users/:email", async (req, res) => {
-        const email = req.params.email;
-        const query = { email: email };
-        const user = await haiku2.findOne(query);
-        let isAdmin = false;
-        let isDoctor = false;
-        if (user?.role === "admin") {
-          isAdmin = true;
-        } else if (user?.role === "doctor") {
-          isDoctor = true;
-        }
-        res.json({ admin: isAdmin, doctor: isDoctor });
-      });
-
-      //POST API FOR USERS
-      app.post("/users", async (req, res) => {
-        const users = req.body;
-        const result = await haiku2.insertOne(users);
-        res.json(result);
-        console.log("[*] User uploaded to database");
-      });
-
-
-      //POST API FOR USERS
-      app.post("/users-info", async (req, res) => {
-        const users = req.body;
-        const result = await haiku4.insertOne(users);
-        res.json(result);
-        console.log("[*] User uploaded to database");
-      });
-      //POST API FOR USERS
-      app.post("/pres-info", async (req, res) => {
-        const users = req.body;
-        const result = await haiku7.insertOne(users);
-        res.json(result);
-        console.log("[*] User uploaded to database");
-      });
-
-      //POST API FOR DOCTOR-LIST
-      app.post("/doctorlist", async (req, res) => {
-        const users = req.body;
-        const result = await haiku3.insertOne(users);
-        res.json(result);
-        console.log("[*] User uploaded to database");
-      });
-
-      //PUT API FOR USERS
-
-      app.put("/users", async (req, res) => {
-        const user = req.body;
-        const filter = { email: user.email };
-        const option = { upsert: true };
-        const update = { $set: user };
-        const result = await haiku2.updateOne(filter, update, option);
-      });
-            //PUT API FOR PRINFO
-
-      app.put("/users-info", async (req, res) => {
-        const user = req.body;
-        const filter = { email: user.email };
-        const option = { upsert: true };
-        const update = { $set: user };
-        const result = await haiku4.updateOne(filter, update, option);
-      });
-      app.put("/users-info/:id", async (req, res) => {
-        const user = req.body;
-        const filter = { email: user.email };
-        const option = { upsert: true };
-        const update = { $set: status };
-        const result = await haiku4.updateOne(filter, update, option);
-      });
-
-      // PUT API FOR ADMIN
-      app.put("/users/admin", async (req, res) => {
-        const user = req.body;
-        const filter = { email: user.email };
-        const update = { $set: { role: "admin" } };
-        const result = await haiku5.updateOne(filter, update);
-        req.json(result);
-      });
-      //DELETE API
-      app.delete("/users-info/:id", async (req, res) => {
-        const id = req.params.id;
-        const query = { _id: ObjectId(id) };
-        const result = await haiku4.deleteOne(query);
-        console.log("deleteing user with id", result);
-        res.json(result);
-      });
-      //DELETE API FOR DOCTOR-LIST
-      app.delete("/doctorlist/:id", async (req, res) => {
-        const id = req.params.id;
-        const query = { _id: ObjectId(id) };
-        const result = await haiku3.deleteOne(query);
-        console.log("deleteing user with id", result);
-        res.json(result);
-      });
-      //DELETE API FOR PRES-IMG
-      app.delete("/pres-img/:id", async (req, res) => {
-        const id = req.params.id;
-        const query = { _id: ObjectId(id) };
-        const result = await haiku6.deleteOne(query);
-        console.log("deleteing user with id", result);
-        res.json(result);
-      });
-
-    } finally {
-      // await client.close();
-    }
-  }
-  run().catch(console.dir);
-});
+}
+run().catch(console.dir);
