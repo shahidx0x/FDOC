@@ -1,8 +1,7 @@
-import React from "react";
-import { Card, Container, Button, Row, Col } from "react-bootstrap";
+import React, {  } from "react";
+import { Card, Container, Button, Row, Col, Badge } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 
 const MyAppoinmentCard = (props) => {
   const notify = () => toast.success("Appoinment Cancled ");
@@ -18,7 +17,7 @@ const MyAppoinmentCard = (props) => {
     apstatus,
     url,
   } = props.data;
-  console.log(url);
+
   const handleDelete = (id) => {
     const isDelete = window.confirm(
       "Are you sure , you want to cancle appointment ?"
@@ -42,7 +41,16 @@ const MyAppoinmentCard = (props) => {
               </Col>
               <Col lg={6}>
                 <h3>Appointed Doctor : {Doctor}</h3>
-                <p>Appoinment Status : {apstatus} </p>
+                <p>
+                  Appoinment Status : {
+                    apstatus ? ( <Badge  pill bg="success" text="dark">
+                      {apstatus}
+                    </Badge>) : (
+                    <Badge  pill bg="warning" text="dark">
+                      Pending
+                    </Badge>
+                  )}
+                </p>
 
                 <div className="mt-5">
                   <h5>Patient Name : {Name}</h5>

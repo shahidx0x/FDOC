@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const DocCard = (props) => {
   const notify = () => toast.success("Appoinment Cancled ");
@@ -19,7 +20,11 @@ const DocCard = (props) => {
     apstatus,
     url,
   } = props.data;
-
+  const handleStatus = (id) => {
+    // axios.put(`https://project-101-doctor.herokuapp.com/users-info/${id}`);
+    axios.put(`https://project-101-doctor.herokuapp.com/users-info/${id}`,{"apstatus":"Approved"});
+    notify();
+  }
   const handleDelete = (id) => {
     const isDelete = window.confirm(
       "Are you sure , you want to cancle appointment ?"
@@ -71,7 +76,7 @@ const DocCard = (props) => {
                 <Button onClick={() => handleDelete(_id)} variant="danger">
                   Cancle Appoinment
                 </Button>
-                <Button className="ms-2" variant="success">
+                <Button onClick={()=>{handleStatus(_id)}} className="ms-2" variant="success">
                   Approve Appoinment
                 </Button>
                 <Link to={`/create-prescription/${Doctor}/${Email}/${Name}/${_id}`}>

@@ -1,15 +1,23 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { EditorState } from "draft-js";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import "draft-js/dist/Draft.css";
+import "./style.css";
 
 const CreatePrescription = () => {
   const { doctor, mail, name, id } = useParams();
   const datac = new Date();
   const datecc = datac.toDateString();
+  const [editorState, setEditorState] = useState(() =>
+    EditorState.createEmpty()
+  );
   const notify = () => toast.success("Succssfully Prescribed");
   const {
     register,
@@ -30,7 +38,7 @@ const CreatePrescription = () => {
   return (
     <>
       <Container className=" mt-5">
-          <ToastContainer/>
+        <ToastContainer />
         <h2 className="text-center mb-5">Create Prescription</h2>
         <div>
           <Row>
@@ -71,7 +79,7 @@ const CreatePrescription = () => {
                   />
                 </Col>
                 <Col className="">
-                  <div style={{ marginTop: "10rem" }}>
+                  <div style={{ marginTop: "3rem" }}>
                     <form onSubmit={handleSubmit(onSubmit)}>
                       <textarea
                         style={{
@@ -82,6 +90,11 @@ const CreatePrescription = () => {
                         {...register("Prescriptions", {})}
                         placeholder="Medication"
                       />
+                      {/* <header className="App-header">
+                        <Editor editorState={editorState} />
+
+                      </header> */}
+
                       <br />
                       <Button
                         className="p-3 mb-5 w-25"
@@ -91,6 +104,14 @@ const CreatePrescription = () => {
                       >
                         Done
                       </Button>
+                      {/* <Button
+                        className="p-3 mb-5 w-25"
+                        style={{ marginLeft: "0px" }}
+                        variant="primary"
+                        type="submit"
+                      >
+                        Done
+                      </Button> */}
                     </form>
                   </div>
                 </Col>

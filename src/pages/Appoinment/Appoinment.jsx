@@ -7,6 +7,8 @@ import "./style.css";
 import storage from "../../firebase/firebase.storage.config";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import axios from "axios";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -19,6 +21,7 @@ const Appoinment = () => {
   const [progress, setProgress] = useState(0);
   const [presUrl, setPresUrl] = useState("");
   const { register, handleSubmit } = useForm();
+  const [startDate, setStartDate] = useState(new Date());
   const notify = () => toast.success("Submitted Successfully ");
   const serverUrl = `https://project-101-doctor.herokuapp.com/doctorlist/${pakId}`;
   useEffect(() => {
@@ -61,6 +64,7 @@ const Appoinment = () => {
     console.log(presUrl);
     data.url = presUrl;
     data.bmdc = appoinments.bmdc;
+    data.apdate = startDate;
     console.log(data);
     setTimeout(sendDataToServer(data), 5000);
     notify();
@@ -89,6 +93,7 @@ const Appoinment = () => {
             <h5>{appoinments.degree}</h5>
             <p>{appoinments.chember}</p>
             <span>{appoinments.bmdc}</span>
+            <p>{appoinments.time}</p>
           </div>
         </Col>
         <Col lg={6}>
@@ -115,10 +120,16 @@ const Appoinment = () => {
               {...register("Email", {})}
             />
             <input type="number" placeholder="Age" {...register("Age", {})} />
-            <input
+            {/* <input
               type="datetime"
               placeholder="Appoint Date"
               {...register("apdate", {})}
+            /> */}
+            <DatePicker
+              className="w-100"
+              {...register("apdate", {})}
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
             />
             <input
               type="time"
@@ -129,10 +140,11 @@ const Appoinment = () => {
               <option value="Male">Male</option>
               <option value="Female">Female</option>
             </select>
-            <select {...register("problem")}>
+            <br />
+            {/* <select {...register("problem")}>
               <option value="Problem1">Problem1</option>
               <option value="Problem2">Problem2</option>
-            </select>
+            </select> */}
             <div className="mt-3">
               <div>
                 <textarea
