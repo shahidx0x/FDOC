@@ -20,10 +20,10 @@ const MUC = (props) => {
   return (
     // <Container>
     //   <ToastContainer />
-      <Card style={{ width: "30rem" }}>
-        <Card.Img variant="top" src={props.data.img} />
+      <Card style={{ width: "30rem",height:"50rem",border:"1px solid blue" }}>
+        <Card.Img variant="top" src={props.data.img} height="100%"/>
         <Card.Body>
-          <Card.Title>Card Title</Card.Title>
+          <Card.Title>{props.data.context}</Card.Title>
           <Button onClick={()=>{handleDelete(props.data._id)}} variant="outline-danger">Delete</Button>
         </Card.Body>
       </Card>

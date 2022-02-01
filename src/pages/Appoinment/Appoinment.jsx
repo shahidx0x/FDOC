@@ -129,7 +129,9 @@ const Appoinment = () => {
               className="w-100"
               {...register("apdate", {})}
               selected={startDate}
-              onChange={(date) => setStartDate(date)}
+              onChange={(date) => {
+                setStartDate(date)
+              }}
             />
             <input
               type="time"

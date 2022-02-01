@@ -55,7 +55,7 @@ const MyAppoinmentCard = (props) => {
                 <div className="mt-5">
                   <h5>Patient Name : {Name}</h5>
                   <p className="fw-bold">Patient Contact : {Email}</p>
-                  <p className="fw-bold">Appointed Date : {apdate}</p>
+                  <p className="fw-bold">Appointed Date : {apdate.substr(0,10)}</p>
                   <p className="fw-bold">Appointed Time : {aptime}</p>
                 </div>
                 <p className="text-center fw-bold">Problem Details</p>

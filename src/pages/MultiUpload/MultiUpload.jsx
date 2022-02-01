@@ -10,16 +10,17 @@ import storage from "../../firebase/firebase.storage.config";
 import MUC from "./MUC";
 import "./style.css";
 
+
 const MultiUpload = () => {
   const notify = () => toast.success("Upload Successfully Completed ");
   const { user } = useAuth();
-  const { handleSubmit } = useForm();
+  const { register,handleSubmit } = useForm();
   const [images, setImages] = useState([]);
   const [progress, setProgress] = useState(0);
   const [presUrls, setPresUrls] = useState([]);
   const [serData, setSerData] = useState([]);
   const [filterdData, setFilteredData] = useState([]);
-  const [title, setTitle] = useState([]);
+  const [title, setTitle] = useState("No Info Available");
 
   useEffect(() => {
     fetch("https://project-101-doctor.herokuapp.com/pres-img")
@@ -28,7 +29,7 @@ const MultiUpload = () => {
         setSerData(data);
         setFilteredData(serData.filter((data) => data.owner === user.email));
       });
-  }, [serData]);
+  }, [user.email,serData]);
   const handleChange = (e) => {
     for (let i = 0; i < e.target.files.length; i++) {
       const newImage = e.target.files[i];
@@ -67,12 +68,15 @@ const MultiUpload = () => {
 
   const s2ser = (name, url) => {
     axios.post("https://project-101-doctor.herokuapp.com/pres-img/", {
+      context : title,
       owner: name,
       img: url,
     });
   };
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-  const onSubmit = (data) => {};
+  const onSubmit = (data) => {
+    setTitle(data.context);
+  };
   const handleview = async () => {
     presUrls.forEach((url) => {
       s2ser(user.email, url);
@@ -100,6 +104,7 @@ const MultiUpload = () => {
                     className="w-100 mb-3"
                     type="text"
                     placeholder="Context of Prescription"
+                   {...register("context", {})} 
                   />
                   <input
                     className="w-100"
