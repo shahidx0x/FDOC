@@ -3,7 +3,7 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import axios from "axios";
 import storage from "../../../firebase/firebase.storage.config";
@@ -19,7 +19,7 @@ const AddNewDoctor = () => {
   const [image, setImage] = useState([]);
   const [progress, setProgress] = useState(0);
   const [presUrl, setPresUrl] = useState("");
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
   const saveUser = (email, displayName, role) => {
     const user = { email, displayName, role };
@@ -64,7 +64,7 @@ const AddNewDoctor = () => {
           displayName: data.name,
         }).then(() => {
           saveUser(data.Mail, data.name, "doctor");
-          history.push(location.state?.from || "/login");
+          navigate(location.state?.from || "/login");
         });
       })
       .catch((error) => {});

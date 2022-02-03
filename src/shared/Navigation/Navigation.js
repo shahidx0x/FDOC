@@ -1,11 +1,11 @@
 import React from "react";
 import { Container, Nav, Navbar, Button, NavDropdown } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const Navigation = () => {
   const { user, logout, admin, doctor } = useAuth();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [a, setA] = React.useState(0);
   const [b, setB] = React.useState(0);
   const [c, setC] = React.useState(0);
@@ -69,7 +69,7 @@ const Navigation = () => {
                   Doctors
                 </Nav.Link>
               )}
-              <a style={{textDecoration:"none",color:"gray",marginTop:"8px",marginLeft:"5px"}} href="https://www.emedicshops.com/" target="_blank"   rel="norem">
+              <a style={{textDecoration:"none",color:"gray",marginTop:"8px",marginLeft:"5px"}} href="https://www.emedicshops.com/" target="_blank" rel="noreferrer">
                 E-Medic
               </a>
             </Nav>
@@ -150,7 +150,7 @@ const Navigation = () => {
                   <>
                     <Button
                       variant="outline-warning"
-                      onClick={() => history.push("/login")}
+                      onClick={() => navigate("/login")}
                     >
                       Login | Register
                     </Button>

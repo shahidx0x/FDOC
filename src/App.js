@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AuthProvider from "./context/AuthProvider";
 import Navigation from "./shared/Navigation/Navigation";
 import Registration from "./pages/Registration/Registration";
@@ -10,13 +10,10 @@ import { useEffect } from "react";
 import DoctorsList from "./pages/DoctorsList/DoctorsList";
 import Login from "./pages/Registration/Login";
 import Test from "./pages/Test";
-import PrivateRoute from "./routes/PrivateRoute/PrivateRoute";
 import Appoinment from "./pages/Appoinment/Appoinment";
 import MyAppoinment from "./pages/MyAppoinment/MyAppoinment";
-import DoctorRoute from "./routes/DoctorRoute/DoctorRoute";
 import Docx from "./usersx/Doctor/Docx";
 import AddNewDoctor from "./usersx/Admin/AddNewDoctor/AddNewDoctor";
-import AdminRoute from "./routes/AdminRoute/AdminRoute";
 import ManageDoctor from "./usersx/Admin/ManageDoctor/ManageDoctor";
 import PatientDetails from "./usersx/Admin/PatientDetails/PatientDetails";
 import MultiUpload from "./pages/MultiUpload/MultiUpload";
@@ -24,6 +21,9 @@ import Loading from "./component/Loading/Loading";
 import ViewPresData from "./usersx/Doctor/ViewPresData";
 import CreatePrescription from "./usersx/Doctor/CreatePrescription";
 import EMPmain from "./pages/EmedicPrescription/EMPmain";
+import PrivateOutlet from "./routes/PrivateOutlet";
+import DoctorOutlet from "./routes/DoctorOutlet";
+import AdminOutlet from "./routes/AdminOutlet";
 
 function App() {
   const [load, setLoad] = useState(false);
@@ -42,57 +42,36 @@ function App() {
         <AuthProvider>
           <Router>
             <Navigation />
-
-            <Switch>
-              <Route exact path="/">
-                <Home />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/doctors" element={<DoctorsList />} />
+              <Route path="/emedic" element={<Test />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/registration" element={<Registration />} />
+              <Route path="/addnewdoctor" element={<AddNewDoctor />} />
+              <Route path="/*" element={<PrivateOutlet />}>
+                <Route path="appoinment/:pakId" element={<Appoinment />} />
+                <Route path="empres" element={<EMPmain />} />
+                <Route path="myappoinment" element={<MyAppoinment />} />
+                <Route path="myprescription" element={<MultiUpload />} />
               </Route>
-              <Route path="/home">
-                <Home />
+              <Route path="/*" element={<DoctorOutlet />}>
+                <Route path="docdash" element={<Docx />} />
+                <Route
+                  path="create-prescription/:doctor/:mail/:name/:id"
+                  element={<CreatePrescription />}
+                />
+                <Route
+                  path="viewpdata/:mail/:name"
+                  element={<ViewPresData />}
+                />
               </Route>
-              <Route path="/doctors">
-                <DoctorsList />
+              <Route path="/*" element={<AdminOutlet />}>
+                <Route path="mngdoctors" element={<ManageDoctor />} />
+                <Route path="pdetails" element={<PatientDetails />} />
               </Route>
-              <Route path="/emedic">
-                <Test />
-              </Route>
-              <Route path="/login">
-                <Login />
-              </Route>
-              <Route path="/registration">
-                <Registration></Registration>
-              </Route>
-              <Route path="/addnewdoctor">
-                <AddNewDoctor />
-              </Route>
-              <PrivateRoute path="/appoinment/:pakId">
-                <Appoinment />
-              </PrivateRoute>
-               <PrivateRoute path="/empres">
-                <EMPmain />
-              </PrivateRoute>
-              <PrivateRoute path="/myappoinment">
-                <MyAppoinment />
-              </PrivateRoute>
-              <PrivateRoute path="/myprescription">
-                <MultiUpload />
-              </PrivateRoute>
-              <DoctorRoute path="/docdash">
-                <Docx />
-              </DoctorRoute>
-              <DoctorRoute path="/create-prescription/:doctor/:mail/:name/:id">
-                <CreatePrescription />
-              </DoctorRoute>
-              <DoctorRoute path="/viewpdata/:mail/:name">
-                <ViewPresData />
-              </DoctorRoute>
-              <AdminRoute path="/mngdoctors">
-                <ManageDoctor />
-              </AdminRoute>
-              <AdminRoute path="/pdetails">
-                <PatientDetails />
-              </AdminRoute>
-            </Switch>
+            </Routes>
           </Router>
         </AuthProvider>
       )}

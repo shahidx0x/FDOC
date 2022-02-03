@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { useForm } from "react-hook-form";
 import "./style.css";
@@ -15,7 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 const Appoinment = () => {
   const { user } = useAuth();
   const { pakId } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [appoinments, setAppoinments] = useState([]);
   const [image, setImage] = useState(null);
   const [progress, setProgress] = useState(0);
@@ -69,7 +69,7 @@ const Appoinment = () => {
     setTimeout(sendDataToServer(data), 5000);
     notify();
     setTimeout(() => {
-      history.push("/myappoinment");
+      navigate("/myappoinment");
     }, 1500);
   };
 

@@ -5,7 +5,7 @@ import "./style.css";
 import "./animation.css";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import initializeAuthentication from "../../firebase/firebase.init";
-import { Link, useHistory} from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 
@@ -14,7 +14,7 @@ const Login = () => {
   const { register, handleSubmit } = useForm();
     const { logout } = useAuth();
   const { login } = useAuth();
-  const history = useHistory();
+  const navigate = useNavigate();
   const saveUser = (email, displayName) => {
     const user = { email, displayName };
     axios.put("https://project-101-doctor.herokuapp.com/users", user);
@@ -23,9 +23,9 @@ const Login = () => {
     logout();
     login(data.mail, data.pass).then((res) => {
       localStorage.setItem("isAuth", "true");
-      history.push("/home");
+      navigate("/home");
     });
-    history.push("/home");
+    navigate("/home");
   };
 
   const handleGoogle = () => {
@@ -36,7 +36,7 @@ const Login = () => {
         const user = result.user;
         saveUser(user.email, user.displayName);
         localStorage.setItem("isAuth", "true");
-        history.push("/home");
+        navigate("/home");
       })
       .catch((error) => {});
       
