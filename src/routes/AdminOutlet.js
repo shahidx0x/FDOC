@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom";
 
 export default function AdminOutlet() {
-  const isAdmin = localStorage.getItem("isAdm");
-  return isAdmin ? <Outlet /> : <Navigate to="/login" />;
+  const isAuth = localStorage.getItem("isAuth");
+  return isAuth ? <Outlet /> : <Navigate to="/login" />;
 }

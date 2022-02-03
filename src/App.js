@@ -50,12 +50,14 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/registration" element={<Registration />} />
               <Route path="/addnewdoctor" element={<AddNewDoctor />} />
+
               <Route path="/*" element={<PrivateOutlet />}>
                 <Route path="appoinment/:pakId" element={<Appoinment />} />
                 <Route path="empres" element={<EMPmain />} />
                 <Route path="myappoinment" element={<MyAppoinment />} />
                 <Route path="myprescription" element={<MultiUpload />} />
               </Route>
+              
               <Route path="/*" element={<DoctorOutlet />}>
                 <Route path="docdash" element={<Docx />} />
                 <Route
