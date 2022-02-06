@@ -6,7 +6,7 @@ import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 
 const DocCard = (props) => {
-  const notify = () => toast.success("Appoinment Cancled ");
+  const notify = () => toast.success("Appointment Canceled ");
   const {
     _id,
     Doctor,
@@ -21,7 +21,7 @@ const DocCard = (props) => {
 
   const handleDelete = (id) => {
     const isDelete = window.confirm(
-      "Are you sure , you want to cancle appointment ?"
+      "Are you sure , you want to canceled appointment ?"
     );
     if (isDelete) {
       fetch(`https://project-101-doctor.herokuapp.com/users-info/${id}`, {
@@ -52,7 +52,7 @@ const DocCard = (props) => {
               </Col>
               <Col lg={6}>
                 <h3>Appointed Doctor : {Doctor}</h3>
-                <p>Appoinment Status : {apstatus} </p>
+                <p>Appointment Status : {apstatus} </p>
 
                 <div className="mt-5">
                   <h5>Patient Name : {Name}</h5>
@@ -66,7 +66,7 @@ const DocCard = (props) => {
                   onClick={() => handleDelete(_id)}
                   variant="outline-danger"
                 >
-                  Cancle Appoinment
+                  Canceled Appoinment
                 </Button>
               </Col>
               <Col lg={2}></Col>
