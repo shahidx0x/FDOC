@@ -21,7 +21,7 @@ const DservicesCard = (props) => {
         </Card.Body>
         <Link to="/doctors">
           <Button className="mx-auto p-3 mb-2 w-50" variant="outline-secondary">
-            Get Appoinment
+            Get Appointment
           </Button>
         </Link>
       </Stack>

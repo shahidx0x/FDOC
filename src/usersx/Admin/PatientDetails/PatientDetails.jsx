@@ -19,7 +19,7 @@ const PatientDetails = () => {
   }, [morder, filteredData, user.displayName]);
   return (
     <Container>
-      <h2 className="text-center mt-5">All Patient Appoinment</h2>
+      <h2 className="text-center mt-5">All Patient Appointment</h2>
       <Container className="ob">
         {morder.map((fdata) => (
           <PDC key={fdata._id} data={fdata}></PDC>
