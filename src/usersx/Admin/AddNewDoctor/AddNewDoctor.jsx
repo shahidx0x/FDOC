@@ -64,7 +64,7 @@ const AddNewDoctor = () => {
           displayName: data.name,
         }).then(() => {
           saveUser(data.Mail, data.name, "doctor");
-          navigate(location.state?.from || "/login");
+          navigate(location.state?.from || "/home");
         });
       })
       .catch((error) => {});

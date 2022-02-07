@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {Container} from "react-bootstrap";
+import {Alert, Container} from "react-bootstrap";
 import useAuth from "../../hooks/useAuth";
 import DocCard from "./DocCard";
 import "react-toastify/dist/ReactToastify.css";
@@ -27,7 +27,7 @@ const Docx = () => {
       </h2>
       <Container className="obx">
         {filteredData.length === 0 ? (
-          <AL></AL>
+          <Alert variant="warning">No Appoinment Available</Alert>
         ) : (
           <Container>
             {filteredData.map((fdata) => (

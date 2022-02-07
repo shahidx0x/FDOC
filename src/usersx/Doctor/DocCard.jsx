@@ -22,9 +22,11 @@ const DocCard = (props) => {
   } = props.data;
   const handleStatus = (id) => {
     // axios.put(`https://project-101-doctor.herokuapp.com/users-info/${id}`);
-    axios.put(`https://project-101-doctor.herokuapp.com/users-info/${id}`,{"apstatus":"Approved"});
+    axios.put(`https://project-101-doctor.herokuapp.com/users-info/${id}`, {
+      apstatus: "Approved",
+    });
     notify();
-  }
+  };
   const handleDelete = (id) => {
     const isDelete = window.confirm(
       "Are you sure , you want to cancel appointment ?"
@@ -63,27 +65,40 @@ const DocCard = (props) => {
                 <div className="mt-5">
                   <h5>
                     Patient Name :{" "}
-                    <Link to={`viewpdata/${Email}/${Name}`}>
+                    <Link to={`/docdash/viewpdata/${Email}/${Name}`}>
                       <Button variant="outline-info">{Name}</Button>
                     </Link>
                   </h5>
                   <p className="fw-bold">Patient Contact : {Email}</p>
-                  <p className="fw-bold">Appointed Date : {apdate.substr(0,10)}</p>
+                  <p className="fw-bold">
+                    Appointed Date : {apdate.substr(0, 10)}
+                  </p>
                   <p className="fw-bold">Appointed Time : {aptime}</p>
                 </div>
                 <p className="text-center fw-bold">Problem Details</p>
                 <Card.Text>{detail}</Card.Text>
-                <Button onClick={() => handleDelete(_id)} variant="danger">
-                  Cancel Appointment
-                </Button>
-                <Button onClick={()=>{handleStatus(_id)}} className="ms-2" variant="success">
-                  Approve Appointment
-                </Button>
-                <Link to={`/create-prescription/${Doctor}/${Email}/${Name}/${_id}`}>
-                  <Button className="ms-2" variant="primary">
-                    Create Prescription
+                <div style={{width:"50rem"}}>
+                  <Button onClick={() => handleDelete(_id)} variant="danger">
+                    Cancel Appointment
                   </Button>
-                </Link>
+                  <Button
+                    onClick={() => {
+                      handleStatus(_id);
+                    }}
+                    className="ms-2"
+                    variant="success"
+                  >
+                    Approve Appointment
+                  </Button>
+
+                  <Link
+                    to={`/create-prescription/${Doctor}/${Email}/${Name}/${_id}`}
+                  >
+                    <Button className="ms-2" variant="primary">
+                      Create Prescription
+                    </Button>
+                  </Link>
+                </div>
               </Col>
               <Col lg={2}></Col>
             </Row>

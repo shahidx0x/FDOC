@@ -49,7 +49,7 @@ const CreatePrescription = () => {
               <div className="d-flex p-5">
                 <div>
                   <img
-                    src="https://svgshare.com/i/djy.svg"
+                    src="prs.svg"
                     alt=""
                     width="80%"
                   />
@@ -73,7 +73,7 @@ const CreatePrescription = () => {
                 <Col lg={4} className="">
                   <img
                     className="ms-2 mt-5"
-                    src="https://svgshare.com/i/dmR.svg"
+                    src="https://svg-clipart.com/svg/logo/TRwCe6n-rx-logo-vector.svg"
                     alt=""
                     width="50%"
                   />

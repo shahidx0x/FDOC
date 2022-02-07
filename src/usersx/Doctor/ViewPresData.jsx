@@ -15,7 +15,7 @@ const ViewPresData = () => {
         setFilData(datas.filter((data) => data.owner === mail));
       });
   }, [datas, mail]);
-  console.log(filData.length);
+  console.log(filData);
   return (
     <Container>
       <h2 className="mt-5 text-center">{name}'s All Medical Prescriptions</h2>

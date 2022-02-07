@@ -78,6 +78,9 @@ const Navigation = () => {
                 {Boolean(b) ? (
                   <>
                     <NavDropdown title="Admin Dashbord" id="basic-nav-dropdown">
+                       <NavDropdown.Item as={Link} to="/addnewdoctor">
+                        Add Doctors
+                      </NavDropdown.Item>
                       <NavDropdown.Item as={Link} to="/mngdoctors">
                         Manage Doctors
                       </NavDropdown.Item>

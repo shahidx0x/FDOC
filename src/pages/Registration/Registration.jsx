@@ -89,9 +89,6 @@ const Registration = () => {
             <p className="">
               <Link to="/login">Already Registerd ? Login here</Link>
             </p>
-            <p className="">
-              <Link to="/addnewdoctor">Are You a Doctor ? Register here</Link>
-            </p>
             <form className="from-container" onSubmit={handleSubmit(onSubmit)}>
               <input
                 type="text"

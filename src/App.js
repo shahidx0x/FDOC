@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import AuthProvider from "./context/AuthProvider";
 import Navigation from "./shared/Navigation/Navigation";
 import Registration from "./pages/Registration/Registration";
@@ -25,6 +25,7 @@ import PrivateOutlet from "./routes/PrivateOutlet";
 import DoctorOutlet from "./routes/DoctorOutlet";
 import AdminOutlet from "./routes/AdminOutlet";
 import { MemoryRouter } from "react-router";
+import DocotorLogin from "./pages/Registration/DoctorLogin";
 function App() {
   const [load, setLoad] = useState(false);
   useEffect(() => {
@@ -36,47 +37,44 @@ function App() {
   return (
     <div className={load ? "App" : ""}>
       {load ? (
-        // <RingLoader color={"#9013FE"} loading={load} size={150} />
         <Loading />
       ) : (
         <AuthProvider>
-          {/* <Router> */}
-            <MemoryRouter>
-              <Navigation />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/home" element={<Home />} />
-                <Route path="/doctors" element={<DoctorsList />} />
-                <Route path="/emedic" element={<Test />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/registration" element={<Registration />} />
-                <Route path="/addnewdoctor" element={<AddNewDoctor />} />
+          <MemoryRouter>
+            <Navigation />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/doctors" element={<DoctorsList />} />
+              <Route path="/emedic" element={<Test />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/registration" element={<Registration />} />
+              <Route path="/doctorlogin" element={<DocotorLogin />} />
 
-                <Route path="/*" element={<PrivateOutlet />}>
-                  <Route path="appoinment/:pakId" element={<Appoinment />} />
-                  <Route path="empres" element={<EMPmain />} />
-                  <Route path="myappoinment" element={<MyAppoinment />} />
-                  <Route path="myprescription" element={<MultiUpload />} />
-                </Route>
-
-                <Route path="/*" element={<DoctorOutlet />}>
-                  <Route path="docdash" element={<Docx />} />
-                  <Route
-                    path="create-prescription/:doctor/:mail/:name/:id"
-                    element={<CreatePrescription />}
-                  />
-                  <Route
-                    path="viewpdata/:mail/:name"
-                    element={<ViewPresData />}
-                  />
-                </Route>
-                <Route path="/*" element={<AdminOutlet />}>
-                  <Route path="mngdoctors" element={<ManageDoctor />} />
-                  <Route path="pdetails" element={<PatientDetails />} />
-                </Route>
-              </Routes>
-            </MemoryRouter>
-          {/* </Router> */}
+              <Route path="/*" element={<PrivateOutlet />}>
+                <Route path="appoinment/:pakId" element={<Appoinment />} />
+                <Route path="empres" element={<EMPmain />} />
+                <Route path="myappoinment" element={<MyAppoinment />} />
+                <Route path="myprescription" element={<MultiUpload />} />
+              </Route>
+              <Route path="/" element={<DoctorOutlet />}>
+                <Route path="docdash" element={<Docx />} />
+                <Route
+                  path="create-prescription/:doctor/:mail/:name/:id"
+                  element={<CreatePrescription />}
+                />
+                <Route
+                  path="docdash/viewpdata/:mail/:name"
+                  element={<ViewPresData />}
+                />
+              </Route>
+              <Route path="/*" element={<AdminOutlet />}>
+                <Route path="mngdoctors" element={<ManageDoctor />} />
+                <Route path="pdetails" element={<PatientDetails />} />
+                <Route path="addnewdoctor" element={<AddNewDoctor />} />
+              </Route>
+            </Routes>
+          </MemoryRouter>
         </AuthProvider>
       )}
     </div>
