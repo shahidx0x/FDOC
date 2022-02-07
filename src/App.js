@@ -24,7 +24,7 @@ import EMPmain from "./pages/EmedicPrescription/EMPmain";
 import PrivateOutlet from "./routes/PrivateOutlet";
 import DoctorOutlet from "./routes/DoctorOutlet";
 import AdminOutlet from "./routes/AdminOutlet";
-
+import { MemoryRouter } from "react-router";
 function App() {
   const [load, setLoad] = useState(false);
   useEffect(() => {
@@ -40,41 +40,43 @@ function App() {
         <Loading />
       ) : (
         <AuthProvider>
-          <Router>
-            <Navigation />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/home" element={<Home />} />
-              <Route path="/doctors" element={<DoctorsList />} />
-              <Route path="/emedic" element={<Test />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/registration" element={<Registration />} />
-              <Route path="/addnewdoctor" element={<AddNewDoctor />} />
+          {/* <Router> */}
+            <MemoryRouter>
+              <Navigation />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/doctors" element={<DoctorsList />} />
+                <Route path="/emedic" element={<Test />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/registration" element={<Registration />} />
+                <Route path="/addnewdoctor" element={<AddNewDoctor />} />
 
-              <Route path="/*" element={<PrivateOutlet />}>
-                <Route path="appoinment/:pakId" element={<Appoinment />} />
-                <Route path="empres" element={<EMPmain />} />
-                <Route path="myappoinment" element={<MyAppoinment />} />
-                <Route path="myprescription" element={<MultiUpload />} />
-              </Route>
-              
-              <Route path="/*" element={<DoctorOutlet />}>
-                <Route path="docdash" element={<Docx />} />
-                <Route
-                  path="create-prescription/:doctor/:mail/:name/:id"
-                  element={<CreatePrescription />}
-                />
-                <Route
-                  path="viewpdata/:mail/:name"
-                  element={<ViewPresData />}
-                />
-              </Route>
-              <Route path="/*" element={<AdminOutlet />}>
-                <Route path="mngdoctors" element={<ManageDoctor />} />
-                <Route path="pdetails" element={<PatientDetails />} />
-              </Route>
-            </Routes>
-          </Router>
+                <Route path="/*" element={<PrivateOutlet />}>
+                  <Route path="appoinment/:pakId" element={<Appoinment />} />
+                  <Route path="empres" element={<EMPmain />} />
+                  <Route path="myappoinment" element={<MyAppoinment />} />
+                  <Route path="myprescription" element={<MultiUpload />} />
+                </Route>
+
+                <Route path="/*" element={<DoctorOutlet />}>
+                  <Route path="docdash" element={<Docx />} />
+                  <Route
+                    path="create-prescription/:doctor/:mail/:name/:id"
+                    element={<CreatePrescription />}
+                  />
+                  <Route
+                    path="viewpdata/:mail/:name"
+                    element={<ViewPresData />}
+                  />
+                </Route>
+                <Route path="/*" element={<AdminOutlet />}>
+                  <Route path="mngdoctors" element={<ManageDoctor />} />
+                  <Route path="pdetails" element={<PatientDetails />} />
+                </Route>
+              </Routes>
+            </MemoryRouter>
+          {/* </Router> */}
         </AuthProvider>
       )}
     </div>
