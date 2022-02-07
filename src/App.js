@@ -26,6 +26,9 @@ import DoctorOutlet from "./routes/DoctorOutlet";
 import AdminOutlet from "./routes/AdminOutlet";
 import { MemoryRouter } from "react-router";
 import DocotorLogin from "./pages/Registration/DoctorLogin";
+import Lab from "./pages/Lab";
+import UserProfile from "./usersx/Admin/UserProfile/UserProfile";
+import ManageAdmins from "./usersx/Admin/ManageAdmins/ManageAdmins";
 function App() {
   const [load, setLoad] = useState(false);
   useEffect(() => {
@@ -50,6 +53,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/registration" element={<Registration />} />
               <Route path="/doctorlogin" element={<DocotorLogin />} />
+              <Route path="/lab" element={<Lab />} />
 
               <Route path="/*" element={<PrivateOutlet />}>
                 <Route path="appoinment/:pakId" element={<Appoinment />} />
@@ -72,6 +76,8 @@ function App() {
                 <Route path="mngdoctors" element={<ManageDoctor />} />
                 <Route path="pdetails" element={<PatientDetails />} />
                 <Route path="addnewdoctor" element={<AddNewDoctor />} />
+                <Route path="user-profile" element={<UserProfile />} />
+                <Route path="mngadmins" element={<ManageAdmins />} />
               </Route>
             </Routes>
           </MemoryRouter>

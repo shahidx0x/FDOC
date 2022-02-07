@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const DocCard = (props) => {
+  const [Status,SetStatus] = useState(false);
   const notify = () => toast.success("Appointment Canceled ");
   const {
     _id,
@@ -78,14 +79,17 @@ const DocCard = (props) => {
                 <p className="text-center fw-bold">Problem Details</p>
                 <Card.Text>{detail}</Card.Text>
                 <div style={{width:"50rem"}}>
-                  <Button onClick={() => handleDelete(_id)} variant="danger">
+                  <Button className={apstatus === "Approved" ? "d-none" : "ms-2"} onClick={() => {
+                    handleDelete(_id);
+                  }} variant="danger">
                     Cancel Appointment
                   </Button>
                   <Button
                     onClick={() => {
                       handleStatus(_id);
+                      SetStatus(true);
                     }}
-                    className="ms-2"
+                    className= {apstatus === "Approved" ? "d-none" : "ms-2"}
                     variant="success"
                   >
                     Approve Appointment

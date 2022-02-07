@@ -1,3 +1,4 @@
+import { Divider } from "@mui/material";
 import React from "react";
 import { Container, Nav, Navbar, Button, NavDropdown } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
@@ -53,8 +54,7 @@ const Navigation = () => {
       >
         <Container>
           <Navbar.Brand href="/home">
-            <img src="./logo_brand.png" alt="" width="200px"/>
-        
+            <img src="./logo_brand.png" alt="" width="200px" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -69,24 +69,48 @@ const Navigation = () => {
                   Doctors
                 </Nav.Link>
               )}
-              <a style={{textDecoration:"none",color:"gray",marginTop:"8px",marginLeft:"5px"}} href="https://www.emedicshops.com/" target="_blank" rel="noreferrer">
+              <a
+                style={{
+                  textDecoration: "none",
+                  color: "gray",
+                  marginTop: "8px",
+                  marginLeft: "5px",
+                }}
+                href="https://www.emedicshops.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
                 E-Medic
               </a>
+              {/* <Nav.Link as={Link} to="/lab">
+                lab
+              </Nav.Link> */}
             </Nav>
             <Nav>
               <Nav.Link>
                 {Boolean(b) ? (
                   <>
                     <NavDropdown title="Admin Dashbord" id="basic-nav-dropdown">
-                       <NavDropdown.Item as={Link} to="/addnewdoctor">
+                      <NavDropdown.Item as={Link} to="/addnewdoctor">
                         Add Doctors
                       </NavDropdown.Item>
+                       <Divider />
                       <NavDropdown.Item as={Link} to="/mngdoctors">
                         Manage Doctors
                       </NavDropdown.Item>
-                      <NavDropdown.Item as={Link} to="/pdetails">
-                        All Patient Details
+                      <Divider />
+                      <NavDropdown.Item as={Link} to="/mngadmins">
+                        Manage Admins
                       </NavDropdown.Item>
+                      <Divider />
+                       <NavDropdown.Item as={Link} to="/user-profile">
+                        All Users Profile
+                      </NavDropdown.Item>
+                      <Divider />
+                      <NavDropdown.Item as={Link} to="/pdetails">
+                        All Patient Appoinments
+                      </NavDropdown.Item>
+                      <Divider />
                       <Button
                         className="w-100"
                         onClick={() => {
@@ -108,12 +132,15 @@ const Navigation = () => {
                       <NavDropdown.Item as={Link} to="/myappoinment">
                         My Appointment
                       </NavDropdown.Item>
-                        <NavDropdown.Item as={Link} to="/empres">
+                      <Divider />
+                      <NavDropdown.Item as={Link} to="/empres">
                         Emedic Prescription
                       </NavDropdown.Item>
+                      <Divider />
                       <NavDropdown.Item as={Link} to="/myprescription">
                         All Prescription
                       </NavDropdown.Item>
+                      <Divider />
 
                       <Button
                         className="w-100"
@@ -136,6 +163,7 @@ const Navigation = () => {
                       <NavDropdown.Item as={Link} to="/docdash">
                         Appointed Patient
                       </NavDropdown.Item>
+                      <Divider />
 
                       <Button
                         className="w-100"

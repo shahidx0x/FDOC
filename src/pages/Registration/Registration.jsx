@@ -31,6 +31,9 @@ const Registration = () => {
     const pass2 = data.password2;
     const email = data.mail;
     const name = data.displayName;
+    data.img_url = `https://randomuser.me/api/portraits/men/${genRandom(
+      100
+    )}.jpg`;
     const img_url = `https://randomuser.me/api/portraits/men/${genRandom(
       100
     )}.jpg`;
@@ -39,6 +42,7 @@ const Registration = () => {
       alert("Password Not Matched");
       return;
     }
+    axios.post('https://project-101-doctor.herokuapp.com/reg-user-info',data);
     registerUser(name, email, pass)
       .then((userCredential) => {
         const updatedUser = { email, displayName: name };
