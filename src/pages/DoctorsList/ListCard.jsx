@@ -42,12 +42,12 @@ const ListCard = (props) => {
             </Col>
             <Col>
               <div className="mt-5 p-3 ms-4">
-                <h5 className="mt-5 fw-bold" style={{fontSize:"18px"}}>Visit Fee : ${fee} Tk</h5>
+                <h5 className="mt-5 fw-bold" style={{fontSize:"18px"}}>Visit Fee : ৳{fee} Tk</h5>
                 <p className="fw-bold">Visiting Hour : {time}</p>
                
                     <Link className="t-n" to={`/appoinment/${_id}`}>
                     <Button className="w-100" variant="outline-primary">
-                      Get Appoinment
+                      Get Appointment
                     </Button>
                 </Link>
          

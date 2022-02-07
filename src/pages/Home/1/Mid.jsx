@@ -28,16 +28,14 @@ const Mid = () => {
           <Slide right>
             <h2 className="fw-bolder text-center">Medical Support</h2>
             <p className="mt-3 fw-bold">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque hic
-              esse numquam odio sunt nam aliquam explicabo rem cumque. Molestiae
-              adipisci nemo sapiente impedit dignissimos, repellendus id tenetur
-              sequi incidunt!Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Neque hic esse numquam odio sunt nam aliquam explicabo rem
-              cumque. Molestiae adipisci nemo sapiente impedit dignissimos,
-              repellendus id tenetur sequi incidunt!Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Neque hic esse numquam odio sunt nam
-              aliquam explicabo rem cumque. Molestiae adipisci nemo sapiente
-              impedit dignissimos, repellendus id tenetur sequi incidunt!
+            E-Medic is an advanced medical industry in Bangladesh.
+             E-Medic provides an smart solution for doctor and patient.
+              E-Medic ensure best healthcare in bangladesh.
+               This is the first time in bangladesh where patient can easily search for doctors and store their previous prescription 
+               where doctor can see them when attending a patient for check up. 
+               Doctor can also provide prescription by our site. All prescription will be stored in patient profile.
+                E-Medic also provide fastest medicine commerce site in bangladesh.
+                 Everyone can buy medicine from our shop.
             </p>
           </Slide>
 
@@ -60,16 +58,7 @@ const Mid = () => {
           <Slide top>
             <h2 className="fw-bolder text-center">Medical Research</h2>
             <p className="mt-3 fw-bold">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque hic
-              esse numquam odio sunt nam aliquam explicabo rem cumque. Molestiae
-              adipisci nemo sapiente impedit dignissimos, repellendus id tenetur
-              sequi incidunt!Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Neque hic esse numquam odio sunt nam aliquam explicabo rem
-              cumque. Molestiae adipisci nemo sapiente impedit dignissimos,
-              repellendus id tenetur sequi incidunt!Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Neque hic esse numquam odio sunt nam
-              aliquam explicabo rem cumque. Molestiae adipisci nemo sapiente
-              impedit dignissimos, repellendus id tenetur sequi incidunt!
+            We have the best research team who always works hard to give the best experience for our users.
             </p>
           </Slide>
 

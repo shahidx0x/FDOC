@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const DocCard = (props) => {
-  const notify = () => toast.success("Appoinment Cancled ");
+  const notify = () => toast.success("Appointment Canceled ");
   const {
     _id,
     Doctor,
@@ -27,7 +27,7 @@ const DocCard = (props) => {
   }
   const handleDelete = (id) => {
     const isDelete = window.confirm(
-      "Are you sure , you want to cancle appointment ?"
+      "Are you sure , you want to cancel appointment ?"
     );
     if (isDelete) {
       fetch(`https://project-101-doctor.herokuapp.com/users-info/${id}`, {
@@ -58,7 +58,7 @@ const DocCard = (props) => {
               </Col>
               <Col lg={6}>
                 <h3>Appointed Doctor : {Doctor}</h3>
-                <p>Appoinment Status : {apstatus} </p>
+                <p>Appointment Status : {apstatus} </p>
 
                 <div className="mt-5">
                   <h5>
@@ -74,10 +74,10 @@ const DocCard = (props) => {
                 <p className="text-center fw-bold">Problem Details</p>
                 <Card.Text>{detail}</Card.Text>
                 <Button onClick={() => handleDelete(_id)} variant="danger">
-                  Cancle Appoinment
+                  Cancel Appointment
                 </Button>
                 <Button onClick={()=>{handleStatus(_id)}} className="ms-2" variant="success">
-                  Approve Appoinment
+                  Approve Appointment
                 </Button>
                 <Link to={`/create-prescription/${Doctor}/${Email}/${Name}/${_id}`}>
                   <Button className="ms-2" variant="primary">

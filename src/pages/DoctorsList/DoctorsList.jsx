@@ -55,7 +55,7 @@ const DoctorsList = () => {
         See Our Specialist Doctors
       </p>
       <h2 className="text-center" style={{ fontSize: "50px" }}>
-        Get Appoinment from our Top Doctor
+        Get Appointment from our Top Doctor
       </h2>
 
       <Container className="">

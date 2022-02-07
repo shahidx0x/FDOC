@@ -103,7 +103,7 @@ const Navigation = () => {
                       id="basic-nav-dropdown"
                     >
                       <NavDropdown.Item as={Link} to="/myappoinment">
-                        My Appoinment
+                        My Appointment
                       </NavDropdown.Item>
                         <NavDropdown.Item as={Link} to="/empres">
                         Emedic Prescription

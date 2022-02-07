@@ -15,7 +15,7 @@ const Loading = () => {
         <div class="loaderPill-floor">
           <div class="loaderPill-floor-shadow"></div>
         </div>
-        <div class="loaderPill-text">Loading your E-MEDIC</div>
+        <div class="loaderPill-text">Loading E-MEDIC</div>
       </div>
     </div>
   );
