@@ -178,7 +178,7 @@ const Appoinment = () => {
                   type="Submit"
                   variant="outline-primary"
                 >
-                  Submit Appoinment
+                  Submit Appointment
                 </Button>
               </div>
             </div>
