@@ -66,7 +66,7 @@ const MyAppoinmentCard = (props) => {
                   onClick={() => handleDelete(_id)}
                   variant="outline-danger"
                 >
-                  Canceled Appointment
+                  Cancel Appointment
                 </Button>
               </Col>
               <Col lg={2}></Col>
