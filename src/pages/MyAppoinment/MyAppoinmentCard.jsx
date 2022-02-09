@@ -63,6 +63,7 @@ const MyAppoinmentCard = (props) => {
                 <p className="text-center fw-bold">Problem Details</p>
                 <Card.Text>{detail}</Card.Text>
                 <Button
+                  className={apstatus === "Approved" ? "d-none" : ""}
                   onClick={() => handleDelete(_id)}
                   variant="outline-danger"
                 >
