@@ -34,6 +34,7 @@ const AddNewDoctor = () => {
   };
 
   const bChange = (e) => {
+    // eslint-disable-next-line array-callback-return
     Bmdcx.filter((data) => {
       if (data.bmdc !== e.target.value) {
         console.log("");
@@ -133,6 +134,11 @@ const AddNewDoctor = () => {
                 type="text"
                 placeholder="Speciality"
                 {...register("speciality", { required: true })}
+              />
+              <input
+                type="text"
+                placeholder="Visiting Houre"
+                {...register("time", { required: true })}
               />
               <input
                 type="text"
