@@ -2,7 +2,7 @@
 # Technology Used
 Bootstrap, ReactJS, MatarialUI, Firebase, ExpressJS, NodeJS, MongoDB, JavaScript
 <ul>
-<li><img href="https://i.ibb.co/VDpNkFf/888847.png"
+<li><img href="https://i.ibb.co/VDpNkFf/888847.png"/>
 </ul>
 
 <h3> Backend-Server : <a href="https://project-101-doctor.herokuapp.com/">E-Medic Server</a></h3>
