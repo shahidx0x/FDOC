@@ -26,7 +26,7 @@ const ListCard = (props) => {
           <Row>
             <Col>
               <img
-                src={img}
+                src={img || "https://img.freepik.com/free-vector/doctor-character-background_1270-84.jpg?size=338&ext=jpg"}
                 alt=""
                 width="100%"
                 height="300px"
@@ -43,7 +43,7 @@ const ListCard = (props) => {
             <Col>
               <div className="mt-5 p-3 ms-4">
                 <h5 className="mt-5 fw-bold" style={{fontSize:"18px"}}>Visit Fee : ৳{fee} Tk</h5>
-                <p className="fw-bold">Visiting Hour : {time}</p>
+                <p className="fw-bold">Visiting Hour : {time || "7:00-8:00"}</p>
                
                     <Link className="t-n" to={`/appointment/${_id}`}>
                     <Button className="w-100" variant="outline-success">
