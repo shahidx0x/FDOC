@@ -9,6 +9,10 @@
 <img src="https://i.ibb.co/zR37vCs/pngaaa-com-6351795.png" width="50px" height="50px"/>
 <img src="https://i.ibb.co/Sv4Fgrb/logo.png" width="50px" height="50px"/>
 <img src="https://i.ibb.co/tzBJ7hk/68747470733a2f2f76352e676574626f6f7473747261702e636f6d2f646f63732f352e302f6173736574732f6272616e642f.png" width="50px" height="50px"/>
+# Tools Used
+<img src="https://i.ibb.co/znjPw1b/Netlify-Logo-wine.png" width="50px" height="50px"/>
+<img src="https://i.ibb.co/YDDTtGx/download-1.png" width="50px" height="50px"/>
+
 
 
 <h3> Backend-Server : <a href="https://project-101-doctor.herokuapp.com/">E-Medic Server</a></h3>
