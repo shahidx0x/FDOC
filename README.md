@@ -1,9 +1,11 @@
 # FDOC => E-medic Solution
 # Technology Used
 Bootstrap, ReactJS, MatarialUI, Firebase, ExpressJS, NodeJS, MongoDB, JavaScript
-<ul>
-<li><img src="https://i.ibb.co/VDpNkFf/888847.png" width="50px" height="50px"/>
-</ul>
+
+<img src="https://i.ibb.co/VDpNkFf/888847.png" width="50px" height="50px"/>
+<img src="https://i.ibb.co/VDpNkFf/888847.png" width="50px" height="50px"/>
+<img src="https://i.ibb.co/VDpNkFf/888847.png" width="50px" height="50px"/>
+
 
 <h3> Backend-Server : <a href="https://project-101-doctor.herokuapp.com/">E-Medic Server</a></h3>
 <ul>REST-Api Routes
