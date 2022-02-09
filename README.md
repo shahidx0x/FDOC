@@ -10,7 +10,7 @@
 <img src="https://i.ibb.co/Sv4Fgrb/logo.png" width="50px" height="50px"/>
 <img src="https://i.ibb.co/tzBJ7hk/68747470733a2f2f76352e676574626f6f7473747261702e636f6d2f646f63732f352e302f6173736574732f6272616e642f.png" width="50px" height="50px"/>
 # Tools Used
-<img src="https://i.ibb.co/znjPw1b/Netlify-Logo-wine.png" width="50px" height="50px"/>
+<img src="https://e7.pngegg.com/pngimages/309/886/png-clipart-logo-node-js-heroku-scalable-graphics-font-amazon-web-services-logo-purple-violet.png" width="50px" height="50px"/>
 <img src="https://i.ibb.co/YDDTtGx/download-1.png" width="50px" height="50px"/>
 
 
