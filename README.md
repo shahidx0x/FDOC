@@ -11,7 +11,7 @@
 <img src="https://i.ibb.co/tzBJ7hk/68747470733a2f2f76352e676574626f6f7473747261702e636f6d2f646f63732f352e302f6173736574732f6272616e642f.png" width="50px" height="50px"/>
 # Tools Used
 <img src="https://i.ibb.co/KXt0McZ/heroku.png" width="50px" height="50px"/>
-<img src="https://i.ibb.co/YDDTtGx/download-1.png" width="50px" height="50px"/>
+<img src="https://cdn.iconscout.com/icon/free/png-256/netlify-3629537-3032320.png" width="50px" height="50px"/>
 
 
 
