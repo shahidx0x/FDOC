@@ -52,10 +52,7 @@ const DoctorsList = () => {
   return (
     <Container className="c-body">
       <ToastContainer/>
-      <p className="text-center" style={{ color: "orange", fontSize: "30px" }}>
-        See Our Specialist Doctors
-      </p>
-      <h2 className="text-center" style={{ fontSize: "50px" }}>
+      <h2 className="text-center" style={{ fontSize: "50px",color:"tomato" }}>
         Get Appointment from our Top Doctor
       </h2>
 

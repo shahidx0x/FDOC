@@ -108,7 +108,7 @@ const Navigation = () => {
                       </NavDropdown.Item>
                       <Divider />
                       <NavDropdown.Item as={Link} to="/pdetails">
-                        All Patient Appoinments
+                        All Patient Appointments
                       </NavDropdown.Item>
                       <Divider />
                       <Button
@@ -134,7 +134,7 @@ const Navigation = () => {
                       </NavDropdown.Item>
                       <Divider />
                       <NavDropdown.Item as={Link} to="/empres">
-                        Emedic Prescription
+                        E-Medic Prescription
                       </NavDropdown.Item>
                       <Divider />
                       <NavDropdown.Item as={Link} to="/myprescription">

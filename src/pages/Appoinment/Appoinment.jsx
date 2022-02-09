@@ -77,7 +77,7 @@ const Appoinment = () => {
     <Container className="mt-5">
       <ToastContainer />
       <h2 className="text-center" style={{ fontSize: "50px" }}>
-        Get Appoinment
+        Get Appointment
       </h2>
       <Row>
         <Col className="mt-2 slide-in-top" lg={6}>
@@ -178,7 +178,7 @@ const Appoinment = () => {
                   type="Submit"
                   variant="outline-primary"
                 >
-                  Submit Appoinment
+                  Submit Appointment
                 </Button>
               </div>
             </div>
