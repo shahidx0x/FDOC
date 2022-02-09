@@ -1,7 +1,5 @@
 # FDOC => E-medic Solution
 # Technology Used
-Bootstrap, ReactJS, MatarialUI, Firebase, ExpressJS, NodeJS, MongoDB, JavaScript
-
 <img src="https://i.ibb.co/VDpNkFf/888847.png" width="50px" height="50px"/><span>
 <img src="https://i.ibb.co/K2fbp8r/pngaaa-com-2507930.png" width="50px" height="50px"/>
 <img src="https://i.ibb.co/HNMGLwr/pngaaa-com-5670994.png" width="50px" height="50px"/>
