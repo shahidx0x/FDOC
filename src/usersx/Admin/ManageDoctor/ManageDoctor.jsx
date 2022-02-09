@@ -49,8 +49,10 @@ const ManageDoctor = () => {
     setFIlteredData(morder.filter((mor) => mor.department === xx));
   };
   return (
+    <>
+    <ToastContainer/>
     <Container className="c-body">
-        <ToastContainer />
+      
       <h2 className="text-center" style={{ fontSize: "50px" }}>
         Manage Doctors
       </h2>
@@ -221,6 +223,8 @@ const ManageDoctor = () => {
         </Row>
       </Container>
     </Container>
+    </>
+    
   );
 };
 

@@ -1,14 +1,14 @@
-import React, { } from "react";
+import React, { useState } from "react";
 import { Col, Container, Row, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import "./style.css";
 import "./animation.css";
 import axios from "axios";
-
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import initializeAuthentication from "../../firebase/firebase.init";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+
 
 initializeAuthentication();
 const Registration = () => {
@@ -97,32 +97,30 @@ const Registration = () => {
               <input
                 type="text"
                 placeholder="Full Name"
-                {...register("displayName", {})}
+                {...register("displayName", { required: true})}
               />
               <input
                 type="email"
                 placeholder="Enter Your mail"
-                {...register("mail", {})}
+                {...register("mail", { required: true})}
               />
-              <input type="number" placeholder="Age" {...register("Age", {})} />
+              <input type="number" placeholder="Age" {...register("Age", { required: true})} />
               <input
                 type="tel"
                 placeholder="Enter Contact Number"
-                {...register("contact", {})}
+                {...register("contact", { required: true})}
               />
               <input
                 type="password"
                 placeholder="Enter Password"
-                {...register("password1", {})}
+                {...register("password1", { required: true})}
               />
               <input
                 type="password"
                 placeholder="Confirm Password"
-                {...register("password2", {})}
+                {...register("password2", { required: true})}
               />
 
-              {/* <input className="btnx" type="Submit" /> */}
-              {/* <Button type="Submit">Register</Button> */}
               <Button
                 className="roll-in-left btnx"
                 type="Submit"

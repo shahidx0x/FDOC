@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
@@ -10,27 +10,43 @@ import storage from "../../../firebase/firebase.storage.config";
 import "./style.css";
 import useAuth from "../../../hooks/useAuth";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 
 const AddNewDoctor = () => {
+  const [Bmdcx, SetBmdcx] = useState([]);
+  useEffect(() => {
+    axios
+      .get("https://project-101-doctor.herokuapp.com/doctorlist")
+      .then((data) => SetBmdcx(data.data));
+  }, []);
+
   const notify = () => toast.success("Submitted Successfully ");
-  const { registerUser, SetUser, auth, updateProfile } = useAuth();
+  const notify2 = () =>
+    toast.warn("A Doctor Already Registerd With this BMDC ");
+  const { logout, registerUser, SetUser, auth, updateProfile } = useAuth();
   const { register, handleSubmit } = useForm();
   const [image, setImage] = useState([]);
   const [progress, setProgress] = useState(0);
   const [presUrl, setPresUrl] = useState("");
   const navigate = useNavigate();
-  const location = useLocation();
   const saveUser = (email, displayName, role) => {
     const user = { email, displayName, role };
     axios.post("https://project-101-doctor.herokuapp.com/users/", user);
+  };
+
+  const bChange = (e) => {
+    Bmdcx.filter((data) => {
+      if (data.bmdc !== e.target.value) {
+        console.log("");
+      } else {
+        notify2();
+      }
+    });
   };
   const handleChange = (e) => {
     if (e.target.files[0]) {
       setImage(e.target.files[0]);
     }
   };
-  console.log(image);
   const handleUpload = () => {
     const storageRef = ref(storage, `/files/${image.name}`);
     const uploadTask = uploadBytesResumable(storageRef, image);
@@ -57,20 +73,21 @@ const AddNewDoctor = () => {
   const onSubmit = (data) => {
     data.img = presUrl;
     registerUser(data.name, data.Mail, data.pass)
-      .then((userCredential) => {
-        const updatedUser = { email: data.Mail, displayName: data.name };
-        SetUser(updatedUser);
-        updateProfile(auth.currentUser, {
-          displayName: data.name,
-        }).then(() => {
-          saveUser(data.Mail, data.name, "doctor");
-          navigate(location.state?.from || "/home");
-        });
-      })
-      .catch((error) => {});
-    data.pass = "";
-    sendDataToServer(data);
-    notify();
+          .then((userCredential) => {
+            const updatedUser = { email: data.Mail, displayName: data.name };
+            SetUser(updatedUser);
+            updateProfile(auth.currentUser, {
+              displayName: data.name,
+            }).then(() => {
+              saveUser(data.Mail, data.name, "doctor");
+              navigate("/home");
+              logout();
+            });
+          })
+          .catch((error) => {});
+        data.pass = "";
+        sendDataToServer(data);
+        notify();
   };
   return (
     <Container style={{ marginTop: "70px" }}>
@@ -94,35 +111,35 @@ const AddNewDoctor = () => {
               <input
                 type="text"
                 placeholder="Doctor Name"
-                {...register("name", {})}
+                {...register("name", { required: true })}
               />
               <input
                 type="password"
                 placeholder="Enter Password"
-                {...register("pass", {})}
+                {...register("pass", { required: true })}
               />
 
               <input
                 type="email"
                 placeholder="Mail"
-                {...register("Mail", {})}
+                {...register("Mail", { required: true })}
               />
               <input
                 type="text"
                 placeholder="Degree"
-                {...register("degree", {})}
+                {...register("degree", { required: true })}
               />
               <input
                 type="text"
                 placeholder="Speciality"
-                {...register("speciality", {})}
+                {...register("speciality", { required: true })}
               />
               <input
                 type="text"
                 placeholder="Chember"
-                {...register("chember", {})}
+                {...register("chember", { required: true })}
               />
-              <select {...register("department")}>
+              <select {...register("department", { required: true })}>
                 <option value="Chest">Chest</option>
                 <option value="Medicine">Medicine</option>
                 <option value="Eye">Dermatology</option>
@@ -134,17 +151,21 @@ const AddNewDoctor = () => {
                 <option value="Eye">Nutritionest</option>
                 <option value="Eye">Eye</option>
               </select>
-              <input type="text" placeholder="Time" {...register("time", {})} />
-              <input type="number" placeholder="Fee" {...register("fee", {})} />
+              <input
+                type="number"
+                placeholder="Fee"
+                {...register("fee", { required: true })}
+              />
               <input
                 type="number"
                 placeholder="Experience"
-                {...register("experience", {})}
+                {...register("experience", { required: true })}
               />
               <input
                 type="text"
+                onChangeCapture={bChange}
                 placeholder="BMDC Registration Number"
-                {...register("bmdc", {})}
+                {...register("bmdc", { required: true })}
               />
               <br />
               <p>Upload Doctor Image</p>

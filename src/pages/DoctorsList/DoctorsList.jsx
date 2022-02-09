@@ -38,6 +38,7 @@ const DoctorsList = () => {
     setFIlteredData(doctorlists);
   };
   const hcc = (xx) => {
+    console.log(morder.filter((mor) => mor.department === xx));
     setFIlteredData(morder.filter((mor) => mor.department === xx));
   };
   const srch = (data) => {
