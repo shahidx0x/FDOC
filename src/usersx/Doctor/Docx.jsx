@@ -27,7 +27,7 @@ const Docx = () => {
       </h2>
       <Container className="obx">
         {filteredData.length === 0 ? (
-          <Alert variant="warning">No Appoinment Available</Alert>
+          <Alert variant="warning">No Appointment Available</Alert>
         ) : (
           <Container>
             {filteredData.map((fdata) => (

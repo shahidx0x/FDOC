@@ -101,9 +101,6 @@ const AddNewDoctor = () => {
             <h2 className="text-center">
               <span>Doctor Registration</span>
             </h2>
-            <p className="">
-              <Link to="/login">Already Registerd ? Login here</Link>
-            </p>
             <form
               className="from-container-xxo slide-in-elliptic-top-fwd"
               onSubmit={handleSubmit(onSubmit)}

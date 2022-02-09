@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import useAuth from "../../hooks/useAuth";
-import MyAppoinmentCard from "./MyAppoinmentCard";
+import MyAppointmentCard from "./MyAppointmentCard";
 import "./style.css"
 
-const MyAppoinment = () => {
+const MyAppointment = () => {
   const { user } = useAuth();
   const [morder, setMorder] = useState([]);
   const [filteredData, setFIlteredData] = useState([]);
@@ -18,16 +18,16 @@ const MyAppoinment = () => {
   }, [morder, user.email]);
   return (
     <Container className="mt-5">
-      <h2 className="text-center" style={{ fontSize: "50px" }}>
+      <h2 className="text-center" style={{ fontSize: "50px",color:"tomato" }}>
         My Appointment
       </h2>
       <Container className="obx">
         {filteredData.map((fdata) => (
-          <MyAppoinmentCard key={fdata._id} data={fdata}></MyAppoinmentCard>
+          <MyAppointmentCard key={fdata._id} data={fdata}></MyAppointmentCard>
         ))}
       </Container>
     </Container>
   );
 };
 
-export default MyAppoinment;
+export default MyAppointment;

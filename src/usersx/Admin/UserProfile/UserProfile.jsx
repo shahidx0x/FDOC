@@ -12,7 +12,7 @@ const UserProfile = () => {
  },[users]);
   return (
     <div>
-        <h2 className="mt-5 text-center">User Profile & Managment</h2>
+        <h2 className="mt-5 text-center">User Profile & Management</h2>
       <Table striped bordered hover className="w-75 text-center mx-auto mt-5">
         <thead>
           <tr>

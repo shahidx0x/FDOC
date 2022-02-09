@@ -45,8 +45,8 @@ const ListCard = (props) => {
                 <h5 className="mt-5 fw-bold" style={{fontSize:"18px"}}>Visit Fee : ৳{fee} Tk</h5>
                 <p className="fw-bold">Visiting Hour : {time}</p>
                
-                    <Link className="t-n" to={`/appoinment/${_id}`}>
-                    <Button className="w-100" variant="outline-primary">
+                    <Link className="t-n" to={`/appointment/${_id}`}>
+                    <Button className="w-100" variant="outline-success">
                       Get Appointment
                     </Button>
                 </Link>

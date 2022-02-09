@@ -10,8 +10,8 @@ import { useEffect } from "react";
 import DoctorsList from "./pages/DoctorsList/DoctorsList";
 import Login from "./pages/Registration/Login";
 import Test from "./pages/Test";
-import Appoinment from "./pages/Appoinment/Appoinment";
-import MyAppoinment from "./pages/MyAppoinment/MyAppoinment";
+import Appointment from "./pages/Appointment/Appointment";
+import MyAppointment from "./pages/MyAppointment/MyAppointment";
 import Docx from "./usersx/Doctor/Docx";
 import AddNewDoctor from "./usersx/Admin/AddNewDoctor/AddNewDoctor";
 import ManageDoctor from "./usersx/Admin/ManageDoctor/ManageDoctor";
@@ -55,9 +55,9 @@ function App() {
               <Route path="/doctorlogin" element={<DocotorLogin />} />
               <Route path="/lab" element={<Lab />} />
               <Route path="/*" element={<PrivateOutlet />}>
-                <Route path="appoinment/:pakId" element={<Appoinment />} />
+                <Route path="appointment/:pakId" element={<Appointment />} />
                 <Route path="empres" element={<EMPmain />} />
-                <Route path="myappoinment" element={<MyAppoinment />} />
+                <Route path="myappointment" element={<MyAppointment />} />
                 <Route path="myprescription" element={<MultiUpload />} />
               </Route>
               <Route path="/" element={<DoctorOutlet />}>

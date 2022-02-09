@@ -12,11 +12,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Appoinment = () => {
+const Appointment = () => {
   const { user } = useAuth();
   const { pakId } = useParams();
   const navigate = useNavigate();
-  const [appoinments, setAppoinments] = useState([]);
+  const [appointments, setAppointments] = useState([]);
   const [image, setImage] = useState(null);
   const [progress, setProgress] = useState(0);
   const [presUrl, setPresUrl] = useState("");
@@ -27,7 +27,7 @@ const Appoinment = () => {
   useEffect(() => {
     fetch(serverUrl)
       .then((res) => res.json())
-      .then((data) => setAppoinments(data));
+      .then((data) => setAppointments(data));
   });
   const handleChange = (e) => {
     if (e.target.files[0]) {
@@ -60,40 +60,40 @@ const Appoinment = () => {
   const onSubmit = (data) => {
     data.Name = user.displayName;
     data.Email = user.email;
-    data.Doctor = appoinments.name;
+    data.Doctor = appointments.name;
     console.log(presUrl);
     data.url = presUrl;
-    data.bmdc = appoinments.bmdc;
+    data.bmdc = appointments.bmdc;
     data.apdate = startDate;
     console.log(data);
     setTimeout(sendDataToServer(data), 5000);
     notify();
     setTimeout(() => {
-      navigate("/myappoinment");
+      navigate("/myappointment");
     }, 1500);
   };
 
   return (
     <Container className="mt-5">
       <ToastContainer />
-      <h2 className="text-center" style={{ fontSize: "50px" }}>
+      <h2 className="text-center" style={{ fontSize: "50px",color:"tomato" }}>
         Get Appointment
       </h2>
       <Row>
         <Col className="mt-2 slide-in-top" lg={6}>
           <img
-            src={appoinments.img}
+            src={appointments.img}
             width="60%"
             height="55%"
             style={{ borderRadius: "50%" }}
             alt="doc-img"
           />
           <div className="mt-4">
-            <p>{appoinments.speciality}</p>
-            <h5>{appoinments.degree}</h5>
-            <p>{appoinments.chember}</p>
-            <span>{appoinments.bmdc}</span>
-            <p>{appoinments.time}</p>
+            <p>{appointments.speciality}</p>
+            <h5>{appointments.degree}</h5>
+            <p>{appointments.chember}</p>
+            <span>{appointments.bmdc}</span>
+            <p>{appointments.time}</p>
           </div>
         </Col>
         <Col lg={6}>
@@ -104,7 +104,7 @@ const Appoinment = () => {
             <input
               type="text"
               placeholder="Doctor"
-              defaultValue={appoinments.name}
+              defaultValue={appointments.name}
               {...register("Doctor", {})}
             />
             <input
@@ -151,7 +151,7 @@ const Appoinment = () => {
               <div>
                 <textarea
                   style={{
-                    width: "173%",
+                    width: "153%",
                     height: "8rem",
                     border: "1px solid blue",
                     borderRadius: "5px",
@@ -176,7 +176,7 @@ const Appoinment = () => {
                 <Button
                   className="roll-in-left btnx"
                   type="Submit"
-                  variant="outline-primary"
+                  variant="outline-success"
                 >
                   Submit Appointment
                 </Button>
@@ -189,4 +189,4 @@ const Appoinment = () => {
   );
 };
 
-export default Appoinment;
+export default Appointment;

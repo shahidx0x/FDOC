@@ -9,7 +9,8 @@ import axios from "axios";
 
 const DocCard = (props) => {
   const [Status,SetStatus] = useState(false);
-  const notify = () => toast.success("Appointment Canceled ");
+  const notify = () => toast.success("Appointment Approved");
+  const notify2 = () => toast.success("Appointment Canceled");
   const {
     _id,
     Doctor,
@@ -36,7 +37,7 @@ const DocCard = (props) => {
       fetch(`https://project-101-doctor.herokuapp.com/users-info/${id}`, {
         method: "DELETE",
       });
-      notify();
+      notify2();
       setTimeout(() => {
         window.location.reload(false);
       }, 500);

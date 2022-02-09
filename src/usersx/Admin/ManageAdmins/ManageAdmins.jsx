@@ -32,7 +32,7 @@ const ManageAdmins = () => {
   return (
     <Container>
      
-      <h2 className="text-center mt-5 fw-bold">Admin Managment</h2>
+      <h2 className="text-center mt-5 fw-bold">Admin Management</h2>
          <div className="w-50 mt-5">
         <p>Total User's : {totalUser}</p>
         <p>Active Admin's : {activeAdmin}</p>
