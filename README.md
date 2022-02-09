@@ -1,6 +1,7 @@
 # FDOC => E-medic Solution
-In the project directory, you can run:
+After Download the project You have to run from the project directory :
 
+### `npm install`
 ### `npm start`
 
 Runs the app in the development mode.\
