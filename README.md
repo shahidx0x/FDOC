@@ -10,7 +10,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 # Technology Used
-<img src="https://i.ibb.co/3zrQSDj/pngaaa-com-4178975.png" width="50px" height="48px"/><span>
+<img src="https://i.ibb.co/3zrQSDj/pngaaa-com-4178975.png" width="50px" height="45px"/><span>
 <img src="https://i.ibb.co/VDpNkFf/888847.png" width="50px" height="50px"/>
 <img src="https://i.ibb.co/K2fbp8r/pngaaa-com-2507930.png" width="50px" height="50px"/>
 <img src="https://i.ibb.co/HNMGLwr/pngaaa-com-5670994.png" width="50px" height="50px"/>
