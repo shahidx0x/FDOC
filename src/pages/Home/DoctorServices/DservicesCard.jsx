@@ -9,7 +9,7 @@ const DservicesCard = (props) => {
       <Card.Img
         style={{ width: "100%", height: "50%" }}
         variant="top"
-        src={img}
+        src={img || "https://img.freepik.com/free-vector/doctor-character-background_1270-84.jpg?size=338&ext=jpg"}
       />
 
       <Stack gap={2} className="">
