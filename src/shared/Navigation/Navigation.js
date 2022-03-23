@@ -82,6 +82,19 @@ const Navigation = () => {
               >
                 E-Medic
               </a>
+                   <a
+                style={{
+                  textDecoration: "none",
+                  color: "gray",
+                  marginTop: "8px",
+                  marginLeft: "5px",
+                }}
+                href="drive_link_here"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Our Android App
+              </a>
               {/* <Nav.Link as={Link} to="/lab">
                 lab
               </Nav.Link> */}
